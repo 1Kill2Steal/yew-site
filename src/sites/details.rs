@@ -23,7 +23,8 @@ pub fn details() -> Html {
                     {
                         "This repo was meant as a test in making a "
                     }
-                    <a href={"https://en.wikipedia.org/wiki/Single-page_application"}>
+                    <a href={"https://en.wikipedia.org/wiki/Single-page_application"}
+                       target={"_blank"}>
                         {"SPA"}
                     </a>
                     {
