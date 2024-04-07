@@ -1,0 +1,10 @@
+[serve]
+# * Your local MULTINET IP may vary a bit from mine 
+# On Linux you can check which one it is with this command:
+# ```sh
+# ip address
+# ```
+address = "192.168.1.6"
+# Another popular choice is 8000
+# * Make sure that no other other local services share the same port!
+port = 8080
