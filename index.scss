@@ -1,9 +1,13 @@
-$footer_height: 250px;
-$black: #111;
-$dark_gray: #333;
-$red: #e00;
-
-$white: #eee;
+:root {
+  /* Color scheming */
+  --footer_height: 250px;
+  --black: #111;
+  --dark_gray: #333;
+  --red: #e00;
+  --white: #eee;
+  --col_side_margin: 10px;
+  --col_side_margin_times_two: calc(var(col_side_margin) * 2);
+}
 
 @keyframes transition_in {
   from {
@@ -22,7 +26,7 @@ body {
   font-family: "JetBrains Mono", monospace;
   font-size: 1.5rem;
 
-  background-color: $black;
+  background-color: var(--black);
 }
 
 root {
@@ -38,7 +42,7 @@ root {
 }
 
 .content {
-  padding-bottom: $footer_height;
+  padding-bottom: var(--footer_height);
 }
 
 nav {
@@ -57,14 +61,14 @@ nav {
     width: 100px;
     height: 50px;
     border-radius: 50px;
-    border: 2px solid $white;
-    color: $white;
-    background-color: $dark_gray;
+    border: 2px solid var(--white);
+    color: var(--white);
+    background-color: var(--dark_gray);
   }
 }
 a {
   text-decoration: none;
-  color: $red;
+  color: var(--red);
 }
 
 .pagination {
@@ -75,9 +79,9 @@ a {
   button {
     width: 75px;
     border-radius: 50px;
-    border: 2px solid $white;
-    color: $white;
-    background-color: $dark_gray;
+    border: 2px solid var(--white);
+    color: var(--white);
+    background-color: var(--dark_gray);
     margin: 10px;
     padding: 20px 5px;
   }
@@ -86,15 +90,13 @@ a {
   }
 }
 
-$col_side_margin: 10px;
-$col_side_margin_times_two: calc($col_side_margin * 2);
 .hu_tao_gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: $dark_gray;
+  background-color: var(--dark_gray);
   margin: 10px;
-  padding-bottom: $col_side_margin_times_two;
+  padding-bottom: var(--col_side_margin_times_two);
 }
 .column {
   max-width: 22vw;
@@ -102,7 +104,7 @@ $col_side_margin_times_two: calc($col_side_margin * 2);
     max-width: 100vw;
   }
   box-sizing: border-box;
-  margin: 0px $col_side_margin;
+  margin: 0px var(--col_side_margin);
   div {
     display: flex;
     flex-direction: column;
@@ -110,7 +112,7 @@ $col_side_margin_times_two: calc($col_side_margin * 2);
   img {
     max-width: 100%;
     display: block;
-    margin: $col_side_margin 0px;
+    margin: var(--col_side_margin) 0px;
     transition: 0.5s ease-in-out;
     box-shadow: 0 0 10px 5px black;
   }
@@ -132,7 +134,7 @@ $col_side_margin_times_two: calc($col_side_margin * 2);
 }
 
 footer {
-  height: $footer_height;
+  height: var(--footer_height);
   width: 100vw;
 
   position: absolute;
