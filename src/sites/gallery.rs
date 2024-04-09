@@ -38,9 +38,9 @@ pub fn gallery() -> Html {
             };
             return Callback::from(move |_| counter.set(res));
         }
-        let distance_sum = *counter + total_pages;
+        let distance_sum = *counter + distance;
         if positive && distance_sum >= total_pages {
-            let res = if distance_sum < total_pages { distance_sum } else { total_pages };
+            let res = distance_sum - total_pages;
             return Callback::from(move |_| counter.set(res));
         }
         if distance == 0 {
