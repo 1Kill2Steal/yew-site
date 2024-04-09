@@ -3,4 +3,4 @@ environment = { NETLIFY_EXPERIMENTAL_BUILD_RUST_SOURCE = "true" }
 
 [build]
   publish = "dist/"
-  command = "./build.sh"
+  command = "chmod +x ./build.sh && ./build.sh"
