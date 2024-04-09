@@ -2,5 +2,5 @@
 environment = { NETLIFY_EXPERIMENTAL_BUILD_RUST_SOURCE = "true" }
 
 [build]
-publish = "dist/"
-command = "./build.sh"
+  publish = "dist/"
+  command = "./build.sh"
