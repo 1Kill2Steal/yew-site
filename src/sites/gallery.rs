@@ -31,7 +31,7 @@ pub fn gallery() -> Html {
         // Edge cases handling
         let (negative, positive): (bool, bool) = (distance < 0, distance > 0);
         if negative && *counter + distance < 1 {
-            let res = if distance >= total_pages {
+            let res = if distance.abs() >= total_pages {
                 total_pages
             } else {
                 total_pages - distance.abs() + 1
