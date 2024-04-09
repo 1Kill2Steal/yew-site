@@ -3,7 +3,4 @@ environment = { NETLIFY_EXPERIMENTAL_BUILD_RUST_SOURCE = "true" }
 
 [build]
 publish = "dist/"
-command = "rustup toolchain install nightly && rustup target add wasm32-unknown-unknown && cargo install cargo-make --force && cargo make build"
-
-[build.environment]
-RUST_VERSION = "1.78.0"
+command = "rustup toolchain install nightly && rustup target add wasm32-unknown-unknown && cargo install --locked trunk && trunk build --release"
