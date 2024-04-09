@@ -1,4 +1,6 @@
-[[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
+[build]
+publish = "/"
+command = "rustup toolchain install nightly && rustup target add wasm32-unknown-unknown && cargo install cargo-make --force && cargo make build"
+
+[build.environment]
+RUST_VERSION = "1.78.0"
