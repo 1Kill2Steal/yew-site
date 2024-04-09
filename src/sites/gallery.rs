@@ -35,7 +35,7 @@ pub fn gallery() -> Html {
                 total_pages
             } else {
                 total_pages - distance.abs() + 1
-            }
+            };
             return Callback::from(move |_| counter.set(res));
         }
         let distance_sum = *counter + distance;
