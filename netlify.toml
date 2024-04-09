@@ -4,3 +4,9 @@ environment = { NETLIFY_EXPERIMENTAL_BUILD_RUST_SOURCE = "true" }
 [build]
   publish = "dist/"
   command = "chmod +x ./build.sh && ./build.sh"
+
+# SPA restrictions.
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
