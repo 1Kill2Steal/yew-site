@@ -31,11 +31,7 @@ pub fn gallery() -> Html {
         // Edge cases handling
         let (negative, positive): (bool, bool) = (distance < 0, distance > 0);
         if negative && *counter + distance < 1 {
-            let res = if distance.abs() == 1 || distance.abs() >= total_pages {
-                total_pages
-            } else {
-                total_pages - distance.abs()
-            };
+            let res = total_pages - distance.abs() + 1;
             return Callback::from(move |_| counter.set(res));
         }
         let distance_sum = *counter + distance;
