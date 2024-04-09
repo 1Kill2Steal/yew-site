@@ -1,3 +1,4 @@
+mod data;
 mod routes;
 mod sites;
 mod switch;

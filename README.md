@@ -13,7 +13,7 @@ content:
 The Gallery images are locally saved and the instructions to set the gallery images are the following:
 
 - Change the data trunks from `/index.html` to the appropriate folders.
-- Change the image format in the code in `/src/sites/gallery.rs` at the start of the function.
+- Change the image format in the code in `/src/data/mod.rs` at the start of the function.
 - Upload your images based on your set format.
 
 Tips: If you use Thunar as your file manager there's a very intuitive way to
