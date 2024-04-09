@@ -1,5 +1,9 @@
 # Yew Site
 
+## Hosted on Netlify
+
+<https://1kill2steal.netlify.app>
+
 ## Short Description & Instructions
 
 It uses WASM bindgen with the Yew framework and the yew router to serve the
