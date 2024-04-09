@@ -1,10 +1,5 @@
 #!/bin/bash
 
-echo "Adding dirs from index.html data trunks"
-mkdir hutao
-mkdir hutao/pics
-mkdir hutao/pics_uncompressed
-
 echo "Setting up the rustup toolchain"
 rustup toolchain install nightly
 rustup default nightly
