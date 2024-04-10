@@ -4,6 +4,8 @@
 
 <https://1kill2steal.netlify.app>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a7cccd56-43ac-49f4-abd7-38c56ba83f18/deploy-status)](https://app.netlify.com/sites/1kill2steal/deploys)
+
 ## Short Description & Instructions
 
 It uses WASM bindgen with the Yew framework and the yew router to serve the
