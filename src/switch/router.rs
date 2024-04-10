@@ -1,9 +1,7 @@
-use super::switch;
+use super::*;
 
 use crate::routes::Route;
 
-use yew::functional::*;
-use yew::prelude::*;
 use yew_router::prelude::*;
 
 #[function_component(Main)]

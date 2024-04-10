@@ -1,12 +1,11 @@
+use super::*;
+
 use crate::data::{
     COMPRESSED_IMAGE_EXTENSION, COMPRESSED_PICS_FOLDER_SIZE, IMAGE_NAME_PATTERN,
     PICS_COMPRESSED_FOLDER_NAME, PICS_UNCOMPRESSED_FOLDER_NAME, UNCOMPRESSED_IMAGE_EXTENSION,
 };
 use crate::templates::footer::Footer;
 use crate::templates::nav::Nav;
-
-use yew::functional::*;
-use yew::prelude::*;
 
 #[function_component(Gallery)]
 pub fn gallery() -> Html {
@@ -116,7 +115,7 @@ pub fn gallery() -> Html {
                     { "(VERY IMPORTANT!)" }
                 </h1>
                 {pagination()}
-                <section class="hu_tao_gallery">
+                <section class="hu-tao-gallery">
                     {
                         set_images(1,
                             first_quarter,

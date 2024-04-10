@@ -1,8 +1,7 @@
+use super::*;
+
 use crate::templates::footer::Footer;
 use crate::templates::nav::Nav;
-
-use yew::functional::*;
-use yew::prelude::*;
 
 #[function_component(Details)]
 pub fn details() -> Html {

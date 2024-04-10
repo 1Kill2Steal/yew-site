@@ -1,3 +1,5 @@
+use super::*;
+
 pub mod router;
 
 use crate::routes::Route;
@@ -5,8 +7,6 @@ use crate::routes::Route;
 use crate::sites::details::Details;
 use crate::sites::gallery::Gallery;
 use crate::sites::homepage::Homepage;
-
-use yew::prelude::*;
 
 pub fn switch(routes: Route) -> Html {
     match routes {

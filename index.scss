@@ -5,8 +5,11 @@
   --dark_gray: #333;
   --red: #e00;
   --white: #eee;
+  /* Margins */
   --col_side_margin: 10px;
   --col_side_margin_times_two: calc(var(col_side_margin) * 2);
+  /* Time */
+  --speed: 0.5s;
 }
 
 @keyframes transition_in {
@@ -38,11 +41,18 @@ root {
   color: #fff6d5;
   text-align: center;
 
-  animation: transition_in, 0.5s;
+  animation: transition_in var(--speed) ease-in-out;
 }
 
 .content {
   padding-bottom: var(--footer_height);
+}
+
+button {
+  border-radius: 50px;
+  border: 2px solid var(--white);
+  color: var(--white);
+  background-color: var(--dark_gray);
 }
 
 nav {
@@ -51,21 +61,59 @@ nav {
   align-items: center;
   flex-wrap: wrap;
   flex-direction: row;
+
   position: sticky;
+  top: 0;
+
   width: 100%;
   background-color: #111;
-  top: 0;
+
+  padding: 15px 0;
+
   z-index: 100;
-  button {
-    margin: 10px;
-    width: 100px;
-    height: 50px;
-    border-radius: 50px;
-    border: 2px solid var(--white);
-    color: var(--white);
-    background-color: var(--dark_gray);
+
+  border-bottom: 3px solid var(--red);
+}
+nav > * {
+  display: block;
+  transition: all var(--speed) ease-in-out;
+}
+.nav-item {
+  display: inline-block;
+}
+.nav-item::after {
+  content: "";
+  width: 100%;
+  opacity: 0%;
+  height: 1px;
+  transform: translateX(-50%);
+  margin-left: 50%;
+  display: block;
+  background: var(--red);
+  transition: var(--speed);
+}
+.nav-item:hover::after {
+  opacity: 100%;
+}
+.mobile-nav {
+  display: none;
+  text-decoration: none !important;
+}
+.opened-nav-item {
+  display: block;
+}
+@media screen and (max-width: 800px) {
+  nav > * {
+    width: 100vw;
+  }
+  .mobile-nav {
+    display: block;
+  }
+  .nav-item {
+    display: none;
   }
 }
+
 a {
   text-decoration: none;
   color: var(--red);
@@ -78,10 +126,6 @@ a {
   font-size: 0.8em;
   button {
     width: 75px;
-    border-radius: 50px;
-    border: 2px solid var(--white);
-    color: var(--white);
-    background-color: var(--dark_gray);
     margin: 10px;
     padding: 20px 5px;
   }
@@ -90,7 +134,7 @@ a {
   }
 }
 
-.hu_tao_gallery {
+.hu-tao-gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -108,12 +152,13 @@ a {
   div {
     display: flex;
     flex-direction: column;
+    animation: transition_in var(--speed) ease-in-out;
   }
   img {
     max-width: 100%;
     display: block;
     margin: var(--col_side_margin) 0px;
-    transition: 0.5s ease-in-out;
+    transition: var(--speed) ease-in-out;
     box-shadow: 0 0 10px 5px black;
   }
   a {
