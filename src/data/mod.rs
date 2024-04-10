@@ -25,3 +25,8 @@ pub static PICS_UNCOMPRESSED_FOLDER_NAME: &str = "hutao/pics_uncompressed/";
 pub static COMPRESSED_PICS_FOLDER_SIZE: usize = 150;
 #[allow(dead_code)]
 pub static UNCOMPRESSED_PICS_FOLDER_SIZE: usize = 150;
+
+#[test]
+fn _same_size() {
+    assert_eq!(COMPRESSED_PICS_FOLDER_SIZE, UNCOMPRESSED_PICS_FOLDER_SIZE);
+}
