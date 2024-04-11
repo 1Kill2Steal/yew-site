@@ -52,7 +52,7 @@ nav {
  */
 .mobile-nav-button {
   display: none;
-  text-decoration: none !important;
+  text-decoration: none;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -79,7 +79,7 @@ nav {
 .opened-nav {
   height: 100vh;
   position: fixed;
-  width: 100vw !important;
+  width: 100vw;
 }
 
 /* Media rules for proper responsiveness */

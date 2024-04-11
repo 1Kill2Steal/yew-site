@@ -94,7 +94,7 @@
  * Handle the fullscreen display and the image closing button
  */
 .hidden-image-close-button {
-  display: none !important;
+  display: none;
 }
 .image-close-button {
   position: fixed;
@@ -105,7 +105,6 @@
   z-index: var(--order-3);
 }
 .fullscreen-img {
-  display: flex !important;
   justify-content: center;
 
   position: fixed;
@@ -122,7 +121,7 @@
   margin: auto;
 }
 .fullscreen-img a {
-  opacity: 1 !important;
+  opacity: 1;
 
   display: flex;
   align-self: center;
@@ -132,5 +131,5 @@
   width: fit-content;
 }
 .fullscreen-img > img:hover {
-  opacity: 1 !important;
+  opacity: 1;
 }
