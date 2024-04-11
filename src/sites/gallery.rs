@@ -59,12 +59,11 @@ pub fn gallery() -> Html {
         Callback::from(move |_| selected_img_id.set(id))
     };
     let fullscreen_img = "fullscreen-img";
-    let gallery_img = "gallery-img";
     let selected_img_class = |target_id: i32| {
         if *selected_img_id == target_id {
             fullscreen_img
         } else {
-            gallery_img
+            ""
         }
     };
     let close_button = || {
@@ -91,28 +90,50 @@ pub fn gallery() -> Html {
                 format!("{PICS_COMPRESSED_FOLDER_NAME}{img_name}{COMPRESSED_IMAGE_EXTENSION}");
             let current_uncompressed_img =
                 format!("{PICS_UNCOMPRESSED_FOLDER_NAME}{img_name}{UNCOMPRESSED_IMAGE_EXTENSION}");
-            let displayed_img = if selected_img_class(id) == gallery_img {
+            let displayed_img = if selected_img_class(id).is_empty() {
                 current_img.to_owned()
             } else {
                 current_uncompressed_img.to_owned()
             };
-            let wrapper = if selected_img_class(id) == gallery_img {
+            let wrapper = if selected_img_class(id).is_empty() {
                 "img-wrapper"
             } else {
                 "" // We don't wrap the fullscreen-img.
             };
-
-            html! {
-                <div key={img_name.clone()} class={classes!{selected_img_class(id)}}>
-                    <div class={classes!{wrapper}} onclick={handle_img_click(id)}>
-                        <img src={displayed_img} />
+            let base = || {
+                html! {
+                    <div key={img_name.clone()} class={classes!{selected_img_class(id)}}>
+                        <div class={classes!{selected_img_class(id)}} onclick={handle_img_click(id)}>
+                            <img src={displayed_img.clone()} />
+                        </div>
+                        <a href={current_uncompressed_img.clone()}
+                            download={img_name.clone()}
+                            alt={img_name.replace('_', " ")}>
+                            { "Download" }
+                        </a>
                     </div>
-                    <a href={current_uncompressed_img}
-                       download={img_name.clone()}
-                       alt={img_name.replace('_', " ")}>
-                        { "Download" }
-                    </a>
-                </div>
+                }
+            };
+            if !selected_img_class(id).is_empty() {
+                html! {
+                    <>
+                        {base()}
+                        <div key={img_name.clone()} class={""}>
+                            <div class={wrapper} onclick={handle_img_click(id)}>
+                                <img src={displayed_img.clone()} />
+                            </div>
+                            <a href={current_uncompressed_img.clone()}
+                                download={img_name.clone()}
+                                alt={img_name.replace('_', " ")}>
+                                { "Download" }
+                            </a>
+                        </div>
+                    </>
+                }
+            } else {
+                html! {
+                {base()}
+                }
             }
         };
         html! {

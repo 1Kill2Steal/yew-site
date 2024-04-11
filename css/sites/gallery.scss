@@ -45,6 +45,7 @@
 
   div {
     display: flex;
+    cursor: pointer;
     flex-direction: column;
     animation: transition_in var(--speed) var(--bezier-primary);
   }
@@ -60,6 +61,8 @@
       100% - var(--download-bar-margin) - var(--download-bar-bottom)
     );
     opacity: 0;
+    inset: 0;
+    margin: auto;
     transition: opacity var(--speed) var(--bezier-primary);
     z-index: var(--order-1);
   }
@@ -81,7 +84,7 @@
     background-color: black;
     opacity: 0;
     transition: var(--speed) var(--bezier-primary);
-    z-index: var(--order-1);
+    z-index: var(--order-2);
   }
 
   /* Custom styling for the hover */
@@ -102,7 +105,8 @@
   height: 69px;
   translate: -50%;
   bottom: 5%;
-  z-index: var(--order-3);
+  cursor: pointer;
+  z-index: var(--order-4);
 }
 .fullscreen-img {
   justify-content: center;
@@ -110,7 +114,7 @@
   position: fixed;
   inset: 0;
 
-  z-index: var(--order-2);
+  z-index: var(--order-3);
   background-color: rgba(0, 0, 0, 0.6);
 }
 .fullscreen-img img {
@@ -129,6 +133,11 @@
   background-color: rgba(0, 0, 0, 0.6);
   font-size: 1.5em;
   width: fit-content;
+
+  margin: auto;
+  inset: 0;
+  top: -37%;
+  z-index: var(--order-4);
 }
 .fullscreen-img > img:hover {
   opacity: 1;
