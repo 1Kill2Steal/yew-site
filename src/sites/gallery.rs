@@ -6,7 +6,6 @@ use crate::data::{
 };
 use crate::templates::footer::Footer;
 use crate::templates::nav::Nav;
-use std::collections::HashMap;
 
 #[function_component(Gallery)]
 pub fn gallery() -> Html {
