@@ -9,17 +9,39 @@ pub fn nav() -> Html {
         let item = mobile_nav.clone();
         Callback::from(move |_| item.set(!*item))
     };
-    // You may add a name to it if you want some special styling. These differences in the classes
-    // were meant to be used to handle the following edge scenario:
-    // - User opened inspect mode -> sized down the window (to reveal the mobile nav)
-    // - Then upscaled the window and forgot to reset the above flip state.
-    // It's really whatever but decided to be perfectionistic so yea.
-    let opened_nav_item = "";
+    let opened_nav_item = "mobile-nav-item";
     let set_nav_item_class = || {
         if *mobile_nav {
             "nav-item"
         } else {
             opened_nav_item
+        }
+    };
+
+    let opened_nav_container = "opened-nav-container";
+    let set_nav_container = || {
+        if *mobile_nav {
+            "nav-container"
+        } else {
+            opened_nav_container
+        }
+    };
+
+    let opened_nav_button = "opened-mobile-nav-button";
+    let set_nav_button = || {
+        if *mobile_nav {
+            "mobile-nav-button"
+        } else {
+            opened_nav_button
+        }
+    };
+
+    let opened_nav = "opened-nav";
+    let set_nav = || {
+        if *mobile_nav {
+            "nav"
+        } else {
+            opened_nav
         }
     };
 
@@ -32,18 +54,20 @@ pub fn nav() -> Html {
     let callback_gallery = Callback::from(move |_| nav_gallery.push(&Route::Gallery));
 
     html! {
-        <nav>
-            <div key={"mobile_nav"} class={"mobile-nav"} onclick={flip()}>
+        <nav class={classes!{set_nav()}}>
+            <div key={"mobile_nav"} class={classes!{set_nav_button()}} onclick={flip()}>
                 <a href={"javascript:void(0);"}>{ "☰" }</a>
             </div>
-            <div key={"homepage"} class={classes!{set_nav_item_class()}} onclick={callback_homepage}>
-                <a href={"javascript:void(0);"}>{ "Homepage" }</a>
-            </div>
-            <div key={"details"} class={classes!{set_nav_item_class()}} onclick={callback_details}>
-                <a href={"javascript:void(0);"}>{ "Details" }</a>
-            </div>
-            <div key={"gallery"} class={classes!{set_nav_item_class()}} onclick={callback_gallery}>
-                <a href={"javascript:void(0);"}>{ "Gallery" }</a>
+            <div key={"nav_container"} class={classes!{set_nav_container()}}>
+                <div key={"homepage"} class={classes!{set_nav_item_class()}} onclick={callback_homepage}>
+                    <a href={"javascript:void(0);"}>{ "Homepage" }</a>
+                </div>
+                <div key={"details"} class={classes!{set_nav_item_class()}} onclick={callback_details}>
+                    <a href={"javascript:void(0);"}>{ "Details" }</a>
+                </div>
+                <div key={"gallery"} class={classes!{set_nav_item_class()}} onclick={callback_gallery}>
+                    <a href={"javascript:void(0);"}>{ "Gallery" }</a>
+                </div>
             </div>
         </nav>
     }

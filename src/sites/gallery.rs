@@ -109,47 +109,49 @@ pub fn gallery() -> Html {
         <root>
             <div class="content">
                 <Nav />
-                <h1>
-                    { "Hu Tao Gallery" }
-                    <br />
-                    { "(VERY IMPORTANT!)" }
-                </h1>
-                {pagination()}
-                <section class="hu-tao-gallery">
-                    {
-                        set_images(1,
-                            first_quarter,
-                            current_page.clone(),
-                            Some(String::from("column")),
-                            None,
-                            Some(String::from("column_1")))
-                    }
-                    {
-                        set_images(first_quarter,
-                            second_quarter,
-                            current_page.clone(),
-                            Some(String::from("column")),
-                            None,
-                            Some(String::from("column_2")))
-                    }
-                    {
-                        set_images(second_quarter,
-                            third_quarter,
-                            current_page.clone(),
-                            Some(String::from("column")),
-                            None,
-                            Some(String::from("column_3")))
-                    }
-                    {
-                        set_images(third_quarter,
-                            page_size,
-                            current_page.clone(),
-                            Some(String::from("column")),
-                            None,
-                            Some(String::from("column_4")))
-                    }
-                </section>
-                {pagination()}
+                <div class="site-content">
+                    <h1>
+                        { "Hu Tao Gallery" }
+                        <br />
+                        { "(VERY IMPORTANT!)" }
+                    </h1>
+                    {pagination()}
+                    <section class="hu-tao-gallery">
+                        {
+                            set_images(1,
+                                first_quarter,
+                                current_page.clone(),
+                                Some(String::from("column")),
+                                None,
+                                Some(String::from("column_1")))
+                        }
+                        {
+                            set_images(first_quarter,
+                                second_quarter,
+                                current_page.clone(),
+                                Some(String::from("column")),
+                                None,
+                                Some(String::from("column_2")))
+                        }
+                        {
+                            set_images(second_quarter,
+                                third_quarter,
+                                current_page.clone(),
+                                Some(String::from("column")),
+                                None,
+                                Some(String::from("column_3")))
+                        }
+                        {
+                            set_images(third_quarter,
+                                page_size,
+                                current_page.clone(),
+                                Some(String::from("column")),
+                                None,
+                                Some(String::from("column_4")))
+                        }
+                    </section>
+                    {pagination()}
+                </div>
             </div>
             <Footer />
         </root>
