@@ -1,0 +1,22 @@
+:root {
+  /* Color scheming */
+  --footer_height: 250px;
+  --black: #111;
+  --dark_gray: #333;
+  --red: #e00;
+  --white: #eee;
+
+  --nav-height: 69px;
+
+  /* Margins */
+  --col_side_margin: 10px;
+
+  /* Animation preset */
+  --speed: 0.5s;
+  --bezier-primary: ease-in-out;
+
+  /* Special mobile nav button offset */
+  --bottom-nav-offset: 69%;
+
+  --nav-button-size: 2em;
+}

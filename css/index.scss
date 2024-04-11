@@ -1,0 +1,44 @@
+@import "./data/variables.scss";
+@import "./data/keyframes.scss";
+@import "./templates/navbar.scss";
+@import "./templates/footer.scss";
+@import "./sites/gallery.scss";
+
+body {
+  position: relative;
+
+  margin: 0;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.5rem;
+
+  background-color: var(--black);
+}
+
+root {
+  display: block;
+  min-height: 100vh;
+
+  position: relative;
+
+  color: #fff6d5;
+  text-align: center;
+
+  animation: transition_in var(--speed) ease-in-out;
+}
+
+.content {
+  padding-bottom: var(--footer_height);
+}
+
+button {
+  border-radius: 50px;
+  border: 2px solid var(--white);
+  color: var(--white);
+  background-color: var(--dark_gray);
+}
+
+a {
+  text-decoration: none;
+  color: var(--red);
+}

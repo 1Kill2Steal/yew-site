@@ -1,0 +1,9 @@
+@import "../data/variables.scss";
+
+footer {
+  height: var(--footer_height);
+  width: 100vw;
+
+  position: absolute;
+  bottom: 0;
+}

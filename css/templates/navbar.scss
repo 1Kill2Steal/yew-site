@@ -1,0 +1,107 @@
+@import "../data/variables.scss";
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  position: sticky;
+  top: 0;
+
+  width: 100%;
+  background-color: #111;
+
+  padding: 0;
+
+  z-index: 100;
+
+  border-bottom: 3px solid var(--red);
+  height: var(--nav-height);
+  transition: all var(--speed) var(--bezier-primary);
+}
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Underline effect */
+.nav-item {
+  display: inline-block;
+  padding: 15px;
+}
+.nav-item::after {
+  content: "";
+  width: 100%;
+  opacity: 0%;
+  height: 1px;
+  translate: -50% 0;
+  margin-left: 50%;
+  display: block;
+  background: var(--red);
+  transition: var(--speed);
+}
+.nav-item:hover::after {
+  opacity: 100%;
+}
+
+/**
+ * Mobile styling
+ * Used state handling to change class names
+ */
+.mobile-nav-button {
+  display: none;
+  text-decoration: none !important;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.opened-mobile-nav-button {
+  position: absolute;
+  top: var(--bottom-nav-offset);
+  font-size: var(--nav-button-size);
+  background: var(--black);
+  width: 100vw;
+  z-index: 100;
+  padding-bottom: calc(100% - var(--nav-button-size));
+}
+.opened-nav-container {
+  position: fixed;
+  translate: 0% -33%;
+  display: block;
+  overflow: scroll;
+  max-height: 75vh;
+}
+.opened-nav-item {
+  display: block;
+}
+.opened-nav {
+  height: 100vh;
+  position: fixed;
+  width: 100vw !important;
+}
+
+/* Media rules for proper responsiveness */
+@media screen and (max-width: 800px) {
+  nav {
+    flex-direction: column-reverse;
+  }
+  .mobile-nav-item,
+  .mobile-nav-button {
+    width: 100vw;
+  }
+  .mobile-nav-button {
+    display: block;
+    font-size: var(--nav-button-size);
+  }
+  .mobile-nav-item {
+    margin: 60px 0;
+  }
+  .nav-container {
+    flex-wrap: wrap;
+  }
+  .nav-item {
+    display: none;
+  }
+}
