@@ -10,6 +10,8 @@
 
   /* Margins */
   --col_side_margin: 10px;
+  --download-bar-margin: -1em;
+  --download-bar-bottom: 1.69em;
 
   /* Animation preset */
   --speed: 0.5s;
@@ -19,4 +21,13 @@
   --bottom-nav-offset: 69%;
 
   --nav-button-size: 2em;
+
+  /**
+   * z-index variables
+   * The higher the more in front the element is.
+   *
+   */
+  --order-1: 1;
+  --order-2: 2;
+  --order-3: 3;
 }

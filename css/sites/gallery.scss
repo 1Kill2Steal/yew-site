@@ -1,5 +1,5 @@
-@import "../data/variables.scss";
-@import "../data/keyframes.scss";
+@use "../data/variables.scss";
+@use "../data/keyframes.scss";
 
 .pagination {
   display: flex;
@@ -30,6 +30,7 @@
  */
 .column {
   max-width: 22vw;
+  position: relative;
   /* Mobile responsiveness */
   @media screen and (max-width: 900px) {
     max-width: 33vw;
@@ -37,6 +38,7 @@
   @media screen and (max-width: 600px) {
     max-width: 100vw;
   }
+
   /* This is a must */
   box-sizing: border-box;
   margin: 0px var(--col_side_margin);
@@ -44,29 +46,91 @@
   div {
     display: flex;
     flex-direction: column;
-    animation: transition_in var(--speed) ease-in-out;
+    animation: transition_in var(--speed) var(--bezier-primary);
+  }
+  .img-wrapper {
+    position: relative;
+  }
+  .img-wrapper::before {
+    position: absolute;
+    content: "";
+    background: black;
+    width: 100%;
+    height: calc(
+      100% - var(--download-bar-margin) - var(--download-bar-bottom)
+    );
+    opacity: 0;
+    transition: opacity var(--speed) var(--bezier-primary);
+    z-index: var(--order-1);
+  }
+  .img-wrapper:hover::before {
+    opacity: 0.5;
   }
   img {
     max-width: 100%;
     display: block;
+    position: relative;
     margin: var(--col_side_margin) 0px;
     transition: var(--speed) ease-in-out;
     box-shadow: 0 0 10px 5px black;
   }
   a {
     position: relative;
-    bottom: 1.7em;
-    margin-bottom: -1em;
+    bottom: var(--download-bar-bottom);
+    margin-bottom: var(--download-bar-margin);
     background-color: black;
     opacity: 0;
     transition: var(--speed) var(--bezier-primary);
+    z-index: var(--order-1);
   }
+
   /* Custom styling for the hover */
   div:hover a {
     opacity: 1;
   }
-  img:hover {
-    background-color: rgb(0, 0, 0);
-    opacity: 0.5;
-  }
+}
+
+/**
+ * Handle the fullscreen display and the image closing button
+ */
+.hidden-image-close-button {
+  display: none !important;
+}
+.image-close-button {
+  position: fixed;
+  width: 69px;
+  height: 69px;
+  translate: -50%;
+  bottom: 5%;
+  z-index: var(--order-3);
+}
+.fullscreen-img {
+  display: flex !important;
+  justify-content: center;
+
+  position: fixed;
+  inset: 0;
+
+  z-index: var(--order-2);
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.fullscreen-img img {
+  max-width: 80vw;
+  max-height: 80vh;
+  object-fit: cover;
+  /* Margin auto my beloved <3 */
+  margin: auto;
+}
+.fullscreen-img a {
+  opacity: 1 !important;
+
+  display: flex;
+  align-self: center;
+
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 1.5em;
+  width: fit-content;
+}
+.fullscreen-img > img:hover {
+  opacity: 1 !important;
 }

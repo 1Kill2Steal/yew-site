@@ -1,8 +1,8 @@
-@import "./data/variables.scss";
-@import "./data/keyframes.scss";
-@import "./templates/navbar.scss";
-@import "./templates/footer.scss";
-@import "./sites/gallery.scss";
+@use "./data/variables.scss";
+@use "./data/keyframes.scss";
+@use "./templates/navbar.scss";
+@use "./templates/footer.scss";
+@use "./sites/gallery.scss";
 
 body {
   position: relative;

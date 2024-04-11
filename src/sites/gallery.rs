@@ -6,6 +6,7 @@ use crate::data::{
 };
 use crate::templates::footer::Footer;
 use crate::templates::nav::Nav;
+use std::collections::HashMap;
 
 #[function_component(Gallery)]
 pub fn gallery() -> Html {
@@ -53,22 +54,61 @@ pub fn gallery() -> Html {
 
         Callback::from(move |_| counter.set(*counter + distance))
     };
+    let selected_img_id = use_state(|| 0);
+    let handle_img_click = |id: i32| {
+        let selected_img_id = selected_img_id.clone();
+        Callback::from(move |_| selected_img_id.set(id))
+    };
+    let fullscreen_img = "fullscreen-img";
+    let gallery_img = "gallery-img";
+    let selected_img_class = |target_id: i32| {
+        if *selected_img_id == target_id {
+            fullscreen_img
+        } else {
+            gallery_img
+        }
+    };
+    let close_button = || {
+        if *selected_img_id <= 0 {
+            "hidden-image-close-button"
+        } else {
+            "image-close-button"
+        }
+    };
 
     let set_images = |start: i32,
                       end: i32,
                       page: yew::UseStateHandle<i32>,
+                      key: Option<String>,
                       class_name: Option<String>,
-                      id_name: Option<String>,
-                      key_name: Option<String>| {
+                      id_name: Option<String>| {
         let page = (*page - 1) * page_size;
         let page_start = start + page;
         let page_end = (end - 1) + page;
+
         let mut overflow = false;
-        let set_dom = |img_name: String| {
+        let set_dom = |id: i32, img_name: String| {
+            let current_img =
+                format!("{PICS_COMPRESSED_FOLDER_NAME}{img_name}{COMPRESSED_IMAGE_EXTENSION}");
+            let current_uncompressed_img =
+                format!("{PICS_UNCOMPRESSED_FOLDER_NAME}{img_name}{UNCOMPRESSED_IMAGE_EXTENSION}");
+            let displayed_img = if selected_img_class(id) == gallery_img {
+                current_img.to_owned()
+            } else {
+                current_uncompressed_img.to_owned()
+            };
+            let wrapper = if selected_img_class(id) == gallery_img {
+                "img-wrapper"
+            } else {
+                "" // We don't wrap the fullscreen-img.
+            };
+
             html! {
-                <div key={img_name.clone()}>
-                    <img src={format!("{PICS_COMPRESSED_FOLDER_NAME}{img_name}{COMPRESSED_IMAGE_EXTENSION}")} />
-                    <a href={format!("{PICS_UNCOMPRESSED_FOLDER_NAME}{img_name}{UNCOMPRESSED_IMAGE_EXTENSION}")}
+                <div key={img_name.clone()} class={classes!{selected_img_class(id)}}>
+                    <div class={classes!{wrapper}} onclick={handle_img_click(id)}>
+                        <img src={displayed_img} />
+                    </div>
+                    <a href={current_uncompressed_img}
                        download={img_name.clone()}
                        alt={img_name.replace('_', " ")}>
                         { "Download" }
@@ -77,13 +117,13 @@ pub fn gallery() -> Html {
             }
         };
         html! {
-            <div class={class_name} id={id_name} key={key_name.unwrap_or(format!("{start} to {end}"))}>
+            <div key={key.unwrap_or(format!("{start} to {end}"))} class={class_name} id={id_name}>
             {((page_start)..=(page_end)).map(|img_num| {
-                if img_num > COMPRESSED_PICS_FOLDER_SIZE as i32 {
+                if overflow || img_num > COMPRESSED_PICS_FOLDER_SIZE as i32 {
                     overflow = true;
                     html!{}
                 } else {
-                    set_dom(format!("{IMAGE_NAME_PATTERN}{img_num}"))
+                    set_dom(img_num, format!("{IMAGE_NAME_PATTERN}{img_num}"))
                 }
             }).collect::<Html>()}
             </div>
@@ -115,39 +155,40 @@ pub fn gallery() -> Html {
                         <br />
                         { "(VERY IMPORTANT!)" }
                     </h1>
+                    <button class={classes!(close_button())} onclick={handle_img_click(0)}>{"X"}</button>
                     {pagination()}
                     <section class="hu-tao-gallery">
                         {
                             set_images(1,
                                 first_quarter,
                                 current_page.clone(),
+                                Some(String::from("column_1")),
                                 Some(String::from("column")),
-                                None,
-                                Some(String::from("column_1")))
+                                None)
                         }
                         {
                             set_images(first_quarter,
                                 second_quarter,
                                 current_page.clone(),
+                                Some(String::from("column_2")),
                                 Some(String::from("column")),
-                                None,
-                                Some(String::from("column_2")))
+                                None)
                         }
                         {
                             set_images(second_quarter,
                                 third_quarter,
                                 current_page.clone(),
+                                Some(String::from("column_3")),
                                 Some(String::from("column")),
-                                None,
-                                Some(String::from("column_3")))
+                                None)
                         }
                         {
                             set_images(third_quarter,
                                 page_size,
                                 current_page.clone(),
+                                Some(String::from("column_4")),
                                 Some(String::from("column")),
-                                None,
-                                Some(String::from("column_4")))
+                                None)
                         }
                     </section>
                     {pagination()}
