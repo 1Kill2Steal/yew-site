@@ -3,6 +3,7 @@ use super::*;
 use crate::data::{
     COMPRESSED_IMAGE_EXTENSION, COMPRESSED_PICS_FOLDER_SIZE, IMAGE_NAME_PATTERN,
     PICS_COMPRESSED_FOLDER_NAME, PICS_UNCOMPRESSED_FOLDER_NAME, UNCOMPRESSED_IMAGE_EXTENSION,
+    UNCOMPRESSED_PICS_FOLDER_SIZE,
 };
 use crate::templates::footer::Footer;
 use crate::templates::nav::Nav;
@@ -18,13 +19,17 @@ pub fn gallery() -> Html {
     let page_size = 20;
     let current_page = use_state(|| 1);
 
-    let total_pages = COMPRESSED_PICS_FOLDER_SIZE as i32 / page_size + 1;
+    let total_pages = if COMPRESSED_PICS_FOLDER_SIZE as i32 / page_size % page_size == 0 {
+        COMPRESSED_PICS_FOLDER_SIZE as i32 / page_size
+    } else {
+        COMPRESSED_PICS_FOLDER_SIZE as i32 / page_size + 1
+    };
 
     let first_quarter = page_size / 4;
     let second_quarter = first_quarter + first_quarter;
     let third_quarter = second_quarter + first_quarter;
 
-    let move_page = |distance: i32| {
+    let move_state = |distance: i32| {
         let counter = current_page.clone();
 
         // Edge cases handling
@@ -54,23 +59,46 @@ pub fn gallery() -> Html {
         Callback::from(move |_| counter.set(*counter + distance))
     };
     let selected_img_id = use_state(|| 0);
-    let handle_img_click = |id: i32| {
-        let selected_img_id = selected_img_id.clone();
-        Callback::from(move |_| selected_img_id.set(id))
-    };
-    let fullscreen_img = "fullscreen-img";
+    let fullscreen_img_class_name = "fullscreen-img";
     let selected_img_class = |target_id: i32| {
         if *selected_img_id == target_id {
-            fullscreen_img
+            fullscreen_img_class_name
         } else {
             ""
         }
     };
-    let close_button = || {
-        if *selected_img_id <= 0 {
-            "hidden-image-close-button"
+    let handle_img_click = |id: i32| {
+        let selected_img_id = selected_img_id.clone();
+        Callback::from(move |_| selected_img_id.set(id))
+    };
+    let (prev_img, next_img): (i32, i32) = {
+        let selected = *selected_img_id.clone();
+        let page = *current_page.clone();
+        let page_end = page * page_size + 1;
+        let page_start = (page_end) - page_size - 1;
+
+        if selected - 1 <= page_start {
+            (selected, selected + 1)
+        } else if selected + 1 >= page_end || selected >= UNCOMPRESSED_PICS_FOLDER_SIZE as i32 {
+            (selected - 1, selected)
         } else {
-            "image-close-button"
+            (selected - 1, selected + 1)
+        }
+    };
+
+    let (set_close_button, set_next_button, set_prev_button) = {
+        if *selected_img_id <= 0 {
+            (
+                "hidden-image-close-button",
+                "hidden-next-image-button",
+                "hidden-prev-image-button",
+            )
+        } else {
+            (
+                "image-close-button",
+                "next-image-button",
+                "prev-image-button",
+            )
         }
     };
 
@@ -90,15 +118,10 @@ pub fn gallery() -> Html {
                 format!("{PICS_COMPRESSED_FOLDER_NAME}{img_name}{COMPRESSED_IMAGE_EXTENSION}");
             let current_uncompressed_img =
                 format!("{PICS_UNCOMPRESSED_FOLDER_NAME}{img_name}{UNCOMPRESSED_IMAGE_EXTENSION}");
-            let displayed_img = if selected_img_class(id).is_empty() {
-                current_img.to_owned()
+            let (displayed_img, wrapper) = if !selected_img_class(id).is_empty() {
+                (current_uncompressed_img.to_owned(), "")
             } else {
-                current_uncompressed_img.to_owned()
-            };
-            let wrapper = if selected_img_class(id).is_empty() {
-                "img-wrapper"
-            } else {
-                "" // We don't wrap the fullscreen-img.
+                (current_img.to_owned(), "img-wrapper")
             };
             let base = || {
                 html! {
@@ -114,26 +137,24 @@ pub fn gallery() -> Html {
                     </div>
                 }
             };
-            if !selected_img_class(id).is_empty() {
-                html! {
-                    <>
-                        {base()}
-                        <div key={img_name.clone()} class={""}>
-                            <div class={wrapper} onclick={handle_img_click(id)}>
-                                <img src={displayed_img.clone()} />
-                            </div>
-                            <a href={current_uncompressed_img.clone()}
-                                download={img_name.clone()}
-                                alt={img_name.replace('_', " ")}>
-                                { "Download" }
-                            </a>
+            html! {
+                <>
+                if !selected_img_class(id).is_empty() {
+                    {base()}
+                } else {
+                    {html!{}}
+                }
+                    <div key={img_name.clone()} class={""}>
+                        <div class={wrapper} onclick={handle_img_click(id)}>
+                            <img src={displayed_img.clone()} />
                         </div>
-                    </>
-                }
-            } else {
-                html! {
-                {base()}
-                }
+                        <a href={current_uncompressed_img.clone()}
+                            download={img_name.clone()}
+                            alt={img_name.replace('_', " ")}>
+                            { "Download" }
+                        </a>
+                    </div>
+                </>
             }
         };
         html! {
@@ -153,15 +174,15 @@ pub fn gallery() -> Html {
         html! {
         <div class="pagination">
             <span>{ format!("Page {} of {}", *current_page, total_pages) }</span>
-            <button onclick={move_page(0)}>{ "Start" }</button>
-            <button onclick={move_page(-3)}>{ "-3" }</button>
-            <button onclick={move_page(-2)}>{ "-2" }</button>
-            <button onclick={move_page(-1)}>{ "-1" }</button>
-            <button onclick={move_page(1)}>{ "+1" }</button>
-            <button onclick={move_page(2)}>{ "+2" }</button>
-            <button onclick={move_page(3)}>{ "+3" }</button>
+            <button onclick={move_state(0)}>{ "Start" }</button>
+            <button onclick={move_state(-3)}>{ "-3" }</button>
+            <button onclick={move_state(-2)}>{ "-2" }</button>
+            <button onclick={move_state(-1)}>{ "-1" }</button>
+            <button onclick={move_state(1)}>{ "+1" }</button>
+            <button onclick={move_state(2)}>{ "+2" }</button>
+            <button onclick={move_state(3)}>{ "+3" }</button>
             // I don't know why this works when the total_pages is inverted...
-            <button onclick={move_page(-total_pages)}>{ "End" }</button>
+            <button onclick={move_state(-total_pages)}>{ "End" }</button>
         </div>
         }
     };
@@ -175,7 +196,18 @@ pub fn gallery() -> Html {
                         <br />
                         { "(VERY IMPORTANT!)" }
                     </h1>
-                    <button class={classes!(close_button())} onclick={handle_img_click(0)}>{"X"}</button>
+                    <button class={classes!(set_close_button)}
+                            onclick={handle_img_click(0)}>
+                            {"X"}
+                    </button>
+                    <button class={classes!(set_prev_button)}
+                            onclick={handle_img_click(prev_img)}>
+                            {"<"}
+                    </button>
+                    <button class={classes!(set_next_button)}
+                            onclick={handle_img_click(next_img)}>
+                            {">"}
+                    </button>
                     {pagination()}
                     <section class="hu-tao-gallery">
                         {
@@ -204,7 +236,7 @@ pub fn gallery() -> Html {
                         }
                         {
                             set_images(third_quarter,
-                                page_size,
+                                page_size+1,
                                 current_page.clone(),
                                 Some(String::from("column_4")),
                                 Some(String::from("column")),

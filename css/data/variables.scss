@@ -22,6 +22,9 @@
 
   --nav-button-size: 2em;
 
+  /* Gallery specific variables */
+  --prev-next-distance: 5%;
+
   /**
    * z-index variables
    * The higher the more in front the element is.
@@ -29,6 +32,7 @@
    */
   --order-1: 1;
   --order-2: 2;
-  --order-3: 3;
-  --order-4: 4;
+  --navbar-overlay: 3;
+  --fullscreen-preview-elements: 4;
+  --close-button: 5;
 }

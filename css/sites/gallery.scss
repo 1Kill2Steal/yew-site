@@ -84,7 +84,7 @@
     background-color: black;
     opacity: 0;
     transition: var(--speed) var(--bezier-primary);
-    z-index: var(--order-2);
+    z-index: var(--order-1);
   }
 
   /* Custom styling for the hover */
@@ -95,18 +95,42 @@
 
 /**
  * Handle the fullscreen display and the image closing button
+ * Also handle the next and previous image buttons.
  */
+.hidden-next-image-button,
+.hidden-prev-image-button,
 .hidden-image-close-button {
   display: none;
 }
+.next-image-button,
+.prev-image-button,
 .image-close-button {
   position: fixed;
   width: 69px;
   height: 69px;
-  translate: -50%;
-  bottom: 5%;
   cursor: pointer;
-  z-index: var(--order-4);
+  z-index: var(--close-button);
+}
+.image-close-button {
+  left: 0;
+  right: 0;
+  bottom: 5%;
+}
+.next-image-button,
+.prev-image-button {
+  top: 0;
+  bottom: 0;
+}
+.image-close-button,
+.next-image-button,
+.prev-image-button {
+  margin: auto;
+}
+.prev-image-button {
+  left: var(--prev-next-distance);
+}
+.next-image-button {
+  right: var(--prev-next-distance);
 }
 .fullscreen-img {
   justify-content: center;
@@ -114,7 +138,7 @@
   position: fixed;
   inset: 0;
 
-  z-index: var(--order-3);
+  z-index: var(--fullscreen-preview-elements);
   background-color: rgba(0, 0, 0, 0.6);
 }
 .fullscreen-img img {
@@ -137,7 +161,7 @@
   margin: auto;
   inset: 0;
   top: -37%;
-  z-index: var(--order-4);
+  z-index: var(--fullscreen-preview-elements);
 }
 .fullscreen-img > img:hover {
   opacity: 1;

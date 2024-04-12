@@ -14,7 +14,7 @@ nav {
 
   padding: 0;
 
-  z-index: var(--order-2);
+  z-index: var(--navbar-overlay);
 
   border-bottom: 3px solid var(--red);
   height: var(--nav-height);
@@ -63,7 +63,7 @@ nav {
   font-size: var(--nav-button-size);
   background: var(--black);
   width: 100vw;
-  z-index: var(--order-2);
+  z-index: var(--navbar-overlay);
   padding-bottom: calc(100% - var(--nav-button-size));
 }
 .opened-nav-container {
