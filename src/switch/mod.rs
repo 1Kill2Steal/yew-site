@@ -4,7 +4,7 @@ pub mod router;
 
 use crate::routes::Route;
 
-use crate::sites::details::Details;
+use crate::sites::about_me::AboutMe;
 use crate::sites::gallery::Gallery;
 use crate::sites::homepage::Homepage;
 
@@ -13,8 +13,8 @@ pub fn switch(routes: Route) -> Html {
         Route::Homepage => html! {
             <Homepage />
         },
-        Route::Details => html! {
-            <Details />
+        Route::AboutMe => html! {
+            <AboutMe />
         },
         Route::Gallery => html! {
             <Gallery />

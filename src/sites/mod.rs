@@ -1,5 +1,6 @@
 use super::*;
+use data::*;
 
-pub mod details;
+pub mod about_me;
 pub mod gallery;
 pub mod homepage;

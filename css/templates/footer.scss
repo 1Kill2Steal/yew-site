@@ -1,9 +1,24 @@
 @use "../data/variables.scss";
 
 footer {
+  font-size: 0.75em;
+
   height: var(--footer_height);
   width: 100vw;
 
   position: absolute;
   bottom: 0;
+}
+
+.footer-images {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer-img-container img {
+  width: 2.5em;
+}
+footer img,
+footer p {
+  margin: var(--footer-items-margins);
 }

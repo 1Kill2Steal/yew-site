@@ -1,0 +1,11 @@
+@use "../data/variables.scss";
+@use "../data/keyframes.scss";
+
+ul {
+  text-align: initial;
+  display: inline-flex;
+  flex-direction: column;
+}
+li {
+  padding: 10px 0;
+}

@@ -106,8 +106,8 @@
 .prev-image-button,
 .image-close-button {
   position: fixed;
-  width: 69px;
-  height: 69px;
+  width: 55px;
+  height: 55px;
   cursor: pointer;
   z-index: var(--close-button);
 }
@@ -132,7 +132,7 @@
 .next-image-button {
   right: var(--prev-next-distance);
 }
-.fullscreen-img {
+.fullscreen-overlay {
   justify-content: center;
 
   position: fixed;
@@ -141,14 +141,14 @@
   z-index: var(--fullscreen-preview-elements);
   background-color: rgba(0, 0, 0, 0.6);
 }
-.fullscreen-img img {
+.fullscreen-overlay img {
   max-width: 80vw;
   max-height: 80vh;
   object-fit: cover;
   /* Margin auto my beloved <3 */
   margin: auto;
 }
-.fullscreen-img a {
+.fullscreen-overlay a {
   opacity: 1;
 
   display: flex;
@@ -160,9 +160,14 @@
 
   margin: auto;
   inset: 0;
-  top: -37%;
+  top: -85%;
   z-index: var(--fullscreen-preview-elements);
 }
-.fullscreen-img > img:hover {
+.fullscreen-overlay > img:hover {
   opacity: 1;
+}
+.fullscreen-img {
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
 }
