@@ -22,33 +22,31 @@ pub fn gallery() -> Html {
     let current_page = use_state(|| 1);
     let move_state = |distance: i32| {
         let counter = current_page.clone();
-        let distance_sum = *counter + distance;
+        let target = *counter + distance;
 
-        // Edge cases handling
-        let (negative, positive): (bool, bool) = (distance < 0, distance > 0);
-        if negative && distance_sum < 1 {
-            let res = if distance.abs() >= total_pages {
-                total_pages
-            } else {
-                total_pages - distance.abs() + 1
-            };
-            return Callback::from(move |_| counter.set(res));
-        }
-        if positive && distance_sum >= total_pages {
-            let difference = distance_sum - total_pages;
-            let res = if difference == 0 {
-                total_pages
-            } else {
-                difference
-            };
-            return Callback::from(move |_| counter.set(res));
-        }
-        if distance == 0 {
+        let (first_page_jump, last_page_jump, overflow, underflow): (bool, bool, bool, bool) = (
+            distance == 0,
+            distance >= total_pages || target == 0,
+            target > total_pages,
+            target < 0,
+        );
+
+        if first_page_jump {
             return Callback::from(move |_| counter.set(1));
         }
+        if last_page_jump {
+            return Callback::from(move |_| counter.set(total_pages));
+        }
+        if overflow {
+            return Callback::from(move |_| counter.set(target - total_pages));
+        }
+        if underflow {
+            return Callback::from(move |_| counter.set(total_pages - target.abs()));
+        }
 
-        Callback::from(move |_| counter.set(*counter + distance))
+        Callback::from(move |_| counter.set(target))
     };
+
     let selected_img_id = use_state(|| 0);
     let handle_img_click = |image_id: i32| {
         let selected_img_id = selected_img_id.clone();
@@ -97,7 +95,7 @@ pub fn gallery() -> Html {
             <button onclick={move_state(2)}>{ "+2" }</button>
             <button onclick={move_state(3)}>{ "+3" }</button>
             // I don't know why this works when the total_pages is inverted...
-            <button onclick={move_state(-total_pages)}>{ "End" }</button>
+            <button onclick={move_state(total_pages)}>{ "End" }</button>
         </div>
         }
     };
