@@ -46,7 +46,15 @@ Manual way:
 ```bash
 rustup target add wasm32-unknown-unknown
 cargo install trunk wasm-bindgen-cli
+
+cargo make test_1
+cargo make 1
 ```
+
+> [!NOTE]
+> There may be more cargo make tests, in the case that there's more and this
+> wasn't updated, feel free to PR it adding another command for the test or
+> just open an issue.
 
 Then you can build your application.
 For development:
