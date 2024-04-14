@@ -21,13 +21,17 @@ lazy_static! {
         let target = "json";
         PathBuf::from(format!("{}/{}", PICS_PATHBUF.display(), target))
     };
-    pub static ref JSON_FULL_PATH_AND_NAME: String = {
+    pub static ref JSON_FOLDER_SIZES: String = {
         let name = "folder_sizes.json";
+        format!("{}/{}", PICS_JSON_PATHBUF.display(), name)
+    };
+    pub static ref JSON_IMAGE_FILES_NAMES: String = {
+        let name = "image_details.json";
         format!("{}/{}", PICS_JSON_PATHBUF.display(), name)
     };
     pub static ref JSON_FILE: fs::File = {
         let file =
-        fs::File::open(JSON_FULL_PATH_AND_NAME.as_str());
+        fs::File::open(JSON_FOLDER_SIZES.as_str());
         if file.is_err() {
             eprintln!("Incorrect file name.");
         }
