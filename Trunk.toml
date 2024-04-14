@@ -1,3 +1,7 @@
+[build]
+target = "index.html"
+dist = "dist"
+
 [serve]
 # * Your local MULTINET IP may vary a bit from mine 
 # On Linux you can check which one it is with this command:

@@ -10,29 +10,25 @@ pub static UNCOMPRESSED_IMAGE_EXTENSION: &str = ".png";
 pub static PICS_COMPRESSED_FOLDER_NAME: &str = "hutao/pics/";
 pub static PICS_UNCOMPRESSED_FOLDER_NAME: &str = "hutao/pics_uncompressed/";
 
-// Unfortunately you need to check and set those up yourself. This is a Trunk limitation since
-// counting the folder items inside the trunk serve is impossible. And making a utility script that
-// does that will make it so you need to enter the target folders twice so it ends up not being
-// that much more friendly anyway.
-//
-// WARN: It's important that you make sure the folders are actually the same in size!!
-//
-// The reason is because there's download buttons for the images that correspond to the
-// same image in the different directory.
-// "Why?" - The displayed images are quality 70 JPGs while (most of) the download option ones are
-// max quality PNGs. Of course you can always have 2 identical copies if you don't care about
-// bandwidth OR you can change the layout to only use one folder. Just don't complain when you get
-// negative reviews about your page having slow load times.
-pub static COMPRESSED_PICS_FOLDER_SIZE: usize = 150;
+pub static JSON_FOLDER_SIZES: &str = "/hutao/json/folder_sizes.json";
+#[derive(Clone, PartialEq, serde::Deserialize, Default)]
+pub struct JsonFolderSizesLayout {
+    // These two are forced to be the same in number from the prerequisite build.sh script btw.
+    // (The cargo make utility doesn't compile otherwise)
+    compressed_dir_item_count: i32,
+    uncompressed_dir_item_count: i32,
+}
 #[allow(dead_code)]
-pub static UNCOMPRESSED_PICS_FOLDER_SIZE: usize = 150;
-
-#[test]
-fn _same_size() {
-    assert_eq!(COMPRESSED_PICS_FOLDER_SIZE, UNCOMPRESSED_PICS_FOLDER_SIZE);
+impl JsonFolderSizesLayout {
+    pub fn compressed_count(&self) -> i32 {
+        self.compressed_dir_item_count
+    }
+    pub fn uncompressed_count(&self) -> i32 {
+        self.compressed_dir_item_count
+    }
 }
 
-/// CSS PROPERTY NAMES.
+// CSS PROPERTY NAMES.
 
 pub static FULLSCREEN_OVERLAY_CLASS_NAME: &str = "fullscreen-overlay";
 pub static FULLSCREEN_IMG_CLASS_NAME: &str = "fullscreen-img";

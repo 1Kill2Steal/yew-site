@@ -1,0 +1,6 @@
+[package]
+name = "x0-general-util-structure"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]

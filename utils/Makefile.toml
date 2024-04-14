@@ -1,0 +1,77 @@
+extend = "../Makefile.toml"
+
+[env]
+UTILS_PATH = "../utils"
+
+[tasks.test_util]
+command = "cargo"
+args = ["make", "--cwd", "${UTILS_PATH}/${@}", "utils_test"]
+dependencies = ["test"]
+
+[tasks.build_util]
+command = "cargo"
+args = ["make", "--cwd", "./${@}", "utils_build"]
+dependencies = ["build"]
+
+[tasks.build_util_release]
+command = "cargo"
+args = ["make", "--cwd", "./${@}", "utils_build_release"]
+dependencies = ["build_release"]
+
+[tasks.run_util]
+command = "cargo"
+args = ["make", "--cwd", "./${@}", "utils_run"]
+dependencies = ["build"]
+
+[tasks.run_util_release]
+command = "cargo"
+args = ["make", "--cwd", "./${@}", "utils_run_release"]
+dependencies = ["build_release"]
+
+# Template for building the task (unimportant)
+# - Same for /Makefile.toml and /utils/Makefile.toml
+# [tasks.NUM]
+# alias = "run_NUM"
+#
+# [tasks.test_NUM]
+# command = "cargo"
+# args = ["make", "test_util", "DIR_NAME"]
+#
+# [tasks.run_NUM]
+# command = "cargo"
+# args = ["make", "run_util_release", "DIR_NAME"]
+#
+# [tasks.build_NUM]
+# command = "cargo"
+# args = ["make", "build_util_release", "DIR_NAME"]
+#
+# [tasks.dev_run_NUM]
+# command = "cargo"
+# args = ["make", "run_util", "DIR_NAME"]
+#
+# [tasks.dev_build_NUM]
+# command = "cargo"
+# args = ["make", "build_util", "DIR_NAME"]
+
+[tasks.1]
+alias = "run_1"
+
+[tasks.test_1]
+command = "cargo"
+args = ["make", "test_util", "x1_file_and_json_utils"]
+
+[tasks.run_1]
+command = "cargo"
+args = ["make", "run_util_release", "x1_file_and_json_utils"]
+
+[tasks.build_1]
+command = "cargo"
+args = ["make", "build_util_release", "x1_file_and_json_utils"]
+
+[tasks.dev_run_1]
+command = "cargo"
+args = ["make", "run_util", "x1_file_and_json_utils"]
+
+[tasks.dev_build_1]
+command = "cargo"
+args = ["make", "build_util", "x1_file_and_json_utils"]

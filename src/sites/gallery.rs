@@ -1,5 +1,7 @@
 use super::*;
 
+use gloo_net::http::Request;
+
 use crate::templates::footer::Footer;
 use crate::templates::nav::Nav;
 
@@ -8,14 +10,42 @@ use crate::data::gallery::*;
 
 #[function_component(Gallery)]
 pub fn gallery() -> Html {
+    // Who would've thought I'd use someone else's GitHub repo code for reference...
+    // I'm sorry and thank you at the same time
+    // https://github.com/LelouchFR/windows-terminal-theme-generator/blob/61262073be3af7c39468c18b9cf8835683e00495/src/home_page.rs#L50-L63
+    #[allow(clippy::redundant_closure)] // The closure actually isn't redundant.
+    let data: UseStateHandle<JsonFolderSizesLayout> =
+        use_state(|| JsonFolderSizesLayout::default());
+    {
+        let data = data.clone();
+        use_effect_with((), move |_| {
+            let data = data.clone();
+            wasm_bindgen_futures::spawn_local(async move {
+                let fetched_data: JsonFolderSizesLayout = Request::get(JSON_FOLDER_SIZES)
+                    .send()
+                    .await
+                    .unwrap()
+                    .json()
+                    .await
+                    .unwrap();
+                data.set(fetched_data);
+            });
+
+            || ()
+        });
+    }
+    // You can use either or (doesn't matter) Made sure the count of compressed items matches the
+    // count of the uncompressed items.
+    let compressed_pics_folder_size = data.clone().compressed_count();
+
     // Page values.
     let first_quarter = PAGE_SIZE / 4;
     let second_quarter = first_quarter + first_quarter;
     let third_quarter = second_quarter + first_quarter;
-    let total_pages = if COMPRESSED_PICS_FOLDER_SIZE as i32 / PAGE_SIZE % PAGE_SIZE == 0 {
-        COMPRESSED_PICS_FOLDER_SIZE as i32 / PAGE_SIZE
+    let total_pages = if compressed_pics_folder_size / PAGE_SIZE % PAGE_SIZE == 0 {
+        compressed_pics_folder_size / PAGE_SIZE
     } else {
-        COMPRESSED_PICS_FOLDER_SIZE as i32 / PAGE_SIZE + 1
+        compressed_pics_folder_size / PAGE_SIZE + 1
     };
 
     // Hooks
@@ -62,7 +92,7 @@ pub fn gallery() -> Html {
 
         if selected - 1 <= page_start {
             (selected, selected + 1)
-        } else if selected + 1 >= page_end || selected >= UNCOMPRESSED_PICS_FOLDER_SIZE as i32 {
+        } else if selected + 1 >= page_end || selected >= compressed_pics_folder_size {
             (selected - 1, selected)
         } else {
             (selected - 1, selected + 1)
@@ -173,7 +203,7 @@ pub fn gallery() -> Html {
         html! {
             <div key={key.unwrap_or(format!("{start} to {end}"))} class={class_name} id={id_name}>
             {((page_start)..=(page_end)).map(|img_num| {
-                if img_num > COMPRESSED_PICS_FOLDER_SIZE as i32 {
+                if img_num > compressed_pics_folder_size {
                     html!{}
                 } else {
                     set_dom(img_num, format!("{IMAGE_NAME_PATTERN}{img_num}"))
