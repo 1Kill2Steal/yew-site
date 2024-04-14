@@ -14,12 +14,19 @@ pub fn gallery() -> Html {
     // I'm sorry and thank you at the same time
     // https://github.com/LelouchFR/windows-terminal-theme-generator/blob/61262073be3af7c39468c18b9cf8835683e00495/src/home_page.rs#L50-L63
     #[allow(clippy::redundant_closure)] // The closure actually isn't redundant.
-    let data: UseStateHandle<JsonFolderSizesLayout> =
-        use_state(|| JsonFolderSizesLayout::default());
+    let (file_size_data, file_name_data): (
+        UseStateHandle<JsonFolderSizesLayout>,
+        UseStateHandle<JsonImageDetailsLayout>,
+    ) = (
+        use_state(|| JsonFolderSizesLayout::default()),
+        use_state(|| JsonImageDetailsLayout::default()),
+    );
     {
-        let data = data.clone();
+        let file_size_data = file_size_data.clone();
+        let file_name_data = file_name_data.clone();
+
         wasm_bindgen_futures::spawn_local(async move {
-            let fetched_data: JsonFolderSizesLayout = Request::get(JSON_FOLDER_SIZES)
+            let fetched_file_size_data: JsonFolderSizesLayout = Request::get(JSON_FOLDER_SIZES)
                 // .header(key, value)
                 .send()
                 .await
@@ -27,12 +34,22 @@ pub fn gallery() -> Html {
                 .json()
                 .await
                 .expect("Failed to fetch images from JSON");
-            data.set(fetched_data);
+            let fetched_file_name_data: JsonImageDetailsLayout = Request::get(JSON_IMAGE_DETAILS)
+                // .header(key, value)
+                .send()
+                .await
+                .expect("Failed to get the response from the requested JSON")
+                .json()
+                .await
+                .expect("Failed to fetch images from JSON");
+
+            file_size_data.set(fetched_file_size_data);
+            file_name_data.set(fetched_file_name_data);
         });
     }
     // You can use either or (doesn't matter) Made sure the count of compressed items matches the
     // count of the uncompressed items.
-    let compressed_pics_folder_size = data.clone().compressed_count();
+    let compressed_pics_folder_size = file_size_data.clone().compressed_count();
 
     // Page values.
     let first_quarter = PAGE_SIZE / 4;
@@ -202,7 +219,14 @@ pub fn gallery() -> Html {
                 if img_num > compressed_pics_folder_size {
                     html!{}
                 } else {
-                    set_dom(img_num, format!("{IMAGE_NAME_PATTERN}{img_num}"))
+                    set_dom(
+                        img_num,
+                        file_name_data
+                            .uncompressed_dir_img_names
+                            .get(&( img_num as u32 ))
+                            .unwrap()
+                            .replace(".png", "")
+                    )
                 }
             }).collect::<Html>()}
             </div>
