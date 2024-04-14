@@ -23,3 +23,6 @@ cargo make 1 &
 
 # Building the project
 trunk build --release &
+
+# Deploying
+trunk serve --release
