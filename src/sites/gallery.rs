@@ -18,20 +18,16 @@ pub fn gallery() -> Html {
         use_state(|| JsonFolderSizesLayout::default());
     {
         let data = data.clone();
-        use_effect_with((), move |_| {
-            let data = data.clone();
-            wasm_bindgen_futures::spawn_local(async move {
-                let fetched_data: JsonFolderSizesLayout = Request::get(JSON_FOLDER_SIZES)
-                    .send()
-                    .await
-                    .unwrap()
-                    .json()
-                    .await
-                    .unwrap();
-                data.set(fetched_data);
-            });
-
-            || ()
+        wasm_bindgen_futures::spawn_local(async move {
+            let fetched_data: JsonFolderSizesLayout = Request::get(JSON_FOLDER_SIZES)
+                // .header(key, value)
+                .send()
+                .await
+                .expect("Failed to get the response from the requested JSON")
+                .json()
+                .await
+                .expect("Failed to fetch images from JSON");
+            data.set(fetched_data);
         });
     }
     // You can use either or (doesn't matter) Made sure the count of compressed items matches the

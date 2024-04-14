@@ -7,10 +7,10 @@ pub static UNCOMPRESSED_IMAGE_EXTENSION: &str = ".png";
 // You need to change this if you want to have your images in a different directory
 // NOTE: If you do change it you also need to change it in /index.html where all the data trunks
 // are copied over.
-pub static PICS_COMPRESSED_FOLDER_NAME: &str = "hutao/pics/";
-pub static PICS_UNCOMPRESSED_FOLDER_NAME: &str = "hutao/pics_uncompressed/";
+pub static PICS_COMPRESSED_FOLDER_NAME: &str = "/pics/";
+pub static PICS_UNCOMPRESSED_FOLDER_NAME: &str = "/pics_uncompressed/";
 
-pub static JSON_FOLDER_SIZES: &str = "/hutao/json/folder_sizes.json";
+pub static JSON_FOLDER_SIZES: &str = "/json/folder_sizes.json";
 #[derive(Clone, PartialEq, serde::Deserialize, Default)]
 pub struct JsonFolderSizesLayout {
     // These two are forced to be the same in number from the prerequisite build.sh script btw.
