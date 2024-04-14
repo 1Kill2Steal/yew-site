@@ -1,28 +1,32 @@
 #!/bin/bash
 
-set -euo pipefail # Exit the script if any pipelines fail.
+set -e # Exit the script if any builds fail.
 
-# Set some specific optimization flags for the rust compiler
-# export RUSTFLAGS="-C opt-level=3 -C target-cpu=native"
+echo "Setting up the rustup toolchain"
+rustup toolchain install nightly
+rustup default nightly
 
-# Setting up the rustup toolchain & cargo binaries
-rustup toolchain install nightly &&
-	rustup default nightly &
-rustup target add wasm32-unknown-unknown &
+echo "Adding wasm target"
+rustup target add wasm32-unknown-unknown
 
-cargo install cargo-make &
-if ! command trunk >/dev/null 2>&1; then
-	cargo install trunk &
+echo "Installing cargo make"
+cargo install cargo-make
+
+echo "Running first test"
+cargo make test_1
+echo "Setting up the JSON files"
+cargo make 1
+
+echo "Checking if trunk is installed"
+if ! which trunk >/dev/null 2>&1; then
+	echo "Installing trunk"
+	cargo install trunk
+else
+	echo "Trunk is already installed"
 fi
 
-wait # To make sure cargo-make is installed.
+# echo "Installing wasm-pack"
+# cargo install wasm-pack
 
-# Running tests
-cargo make test_1 &
-cargo make 1 &
-
-# Building the project
-trunk build --release &
-
-# Deploying
-trunk serve --release
+echo "Building site"
+trunk build --release
