@@ -58,12 +58,12 @@ pub fn set_pic_names() {
         for path in compressed_dir() {
             let path_item_name: String = get_path_name(path, &PICS_COMPRESSED_PATHBUF);
             let captured_idx = || capture_idx(&file_number_regex, &path_item_name);
-            compressed_items_map.insert(captured_idx(), path_item_name.clone());
+            compressed_items_map.insert(captured_idx(), path_item_name.clone().split_off(1));
         }
         for path in uncompressed_dir() {
             let path_item_name: String = get_path_name(path, &PICS_UNCOMPRESSED_PATHBUF);
             let captured_idx = || capture_idx(&file_number_regex, &path_item_name);
-            uncompressed_items_map.insert(captured_idx(), path_item_name.clone());
+            uncompressed_items_map.insert(captured_idx(), path_item_name.clone().split_off(1));
         }
         (compressed_items_map, uncompressed_items_map)
     };
