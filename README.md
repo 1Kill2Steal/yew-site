@@ -14,13 +14,12 @@ content:
 
 - Sticky navigation bar
 - Fixed at the bottom Footer
-- 3 pages: Homepage, Details, Gallery
+- 3 pages: Homepage, About Me, Gallery
 
 The Gallery images are locally saved and the instructions to set the gallery images are the following:
 
-- Change the data trunks from `/index.html` to the appropriate folders.
-- Change the image format in the code in `/src/data/mod.rs` at the start of the function.
-- Upload your images based on your set format.
+- You upload the images in `/hutao/pics` and `/hutao/pics_uncompressed/` (You can change that directory name but you need to bother with changing up the paths in some files - namely the json utility script and the `/index.html` file)
+- In the image folders you need to strictly have your image names either start with the number followed by underscore or end in underscore followed by the number followed by the extension (as that's how the regex is implemented in `/utils/x1_file_and_json_utils/`).
 
 Tips: If you use Thunar as your file manager there's a very intuitive way to
 bulk rename your files. If not then, I'm sure there's other utilities to get
@@ -32,7 +31,17 @@ structure to the way Pinterest images are displayed (just a lot more simple).
 ### Setting up
 
 [Rust w/ rustup](https://www.rust-lang.org/tools/install) (rust-lang.org)
-Then run the following commands:
+From here on you have 2 routes (using the build.sh script if you're on Linux or
+running commands manually):
+
+Running the script:
+
+```sh
+chmod +x ./build.sh # <- That's one time only.
+./build.sh
+```
+
+Manual way:
 
 ```bash
 rustup target add wasm32-unknown-unknown
