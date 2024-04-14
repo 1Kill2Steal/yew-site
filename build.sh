@@ -17,8 +17,13 @@ cargo make test_1
 echo "Setting up the JSON files"
 cargo make 1
 
-echo "Installing trunk"
-cargo install trunk
+echo "Checking if trunk is installed"
+if ! which trunk >/dev/null 2>&1; then
+	echo "Installing trunk"
+	cargo install trunk
+else
+	echo "Trunk is already installed"
+fi
 
 # echo "Installing wasm-pack"
 # cargo install wasm-pack
