@@ -45,13 +45,12 @@ pub fn nav() -> Html {
         }
     };
 
-    let nav_homepage = use_navigator().unwrap();
-    let nav_about_me = use_navigator().unwrap();
-    let nav_gallery = use_navigator().unwrap();
+    let nav = use_navigator().unwrap();
 
-    let callback_homepage = Callback::from(move |_| nav_homepage.push(&Route::Homepage));
-    let callback_about_me = Callback::from(move |_| nav_about_me.push(&Route::AboutMe));
-    let callback_gallery = Callback::from(move |_| nav_gallery.push(&Route::Gallery));
+    let callback_nav = |target: Route| {
+        let nav = nav.clone();
+        Callback::from(move |_| nav.clone().push(&target))
+    };
 
     html! {
         <nav class={classes!{set_nav()}}>
@@ -59,13 +58,13 @@ pub fn nav() -> Html {
                 <a href={"javascript:void(0);"}>{ "☰" }</a>
             </div>
             <div key={"nav_container"} class={classes!{set_nav_container()}}>
-                <div key={"homepage"} class={classes!{set_nav_item_class()}} onclick={callback_homepage}>
+                <div key={"homepage"} class={classes!{set_nav_item_class()}} onclick={callback_nav(Route::Homepage)}>
                     <a href={"javascript:void(0);"}>{ "Homepage" }</a>
                 </div>
-                <div key={"about_me"} class={classes!{set_nav_item_class()}} onclick={callback_about_me}>
+                <div key={"about_me"} class={classes!{set_nav_item_class()}} onclick={callback_nav(Route::AboutMe)}>
                     <a href={"javascript:void(0);"}>{ "About Me" }</a>
                 </div>
-                <div key={"gallery"} class={classes!{set_nav_item_class()}} onclick={callback_gallery}>
+                <div key={"gallery"} class={classes!{set_nav_item_class()}} onclick={callback_nav(Route::Gallery)}>
                     <a href={"javascript:void(0);"}>{ "Gallery" }</a>
                 </div>
             </div>
