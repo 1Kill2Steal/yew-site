@@ -6,9 +6,6 @@ echo "Setting up the rustup toolchain"
 rustup toolchain install nightly
 rustup default nightly
 
-echo "Adding linux target"
-rustup target add x86_64-unknown-linux-gnu
-
 echo "Adding wasm target"
 rustup target add wasm32-unknown-unknown
 
