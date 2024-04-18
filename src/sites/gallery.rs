@@ -13,7 +13,6 @@ pub fn gallery() -> Html {
     // Who would've thought I'd use someone else's GitHub repo code for reference...
     // I'm sorry and thank you at the same time
     // https://github.com/LelouchFR/windows-terminal-theme-generator/blob/61262073be3af7c39468c18b9cf8835683e00495/src/home_page.rs#L50-L63
-    #[allow(clippy::redundant_closure)] // The closure actually isn't redundant.
     let (file_size_data, file_name_data): (
         UseStateHandle<JsonFolderSizesLayout>,
         UseStateHandle<JsonImageDetailsLayout>,
