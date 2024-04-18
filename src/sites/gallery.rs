@@ -2,9 +2,6 @@ use super::*;
 
 use gloo_net::http::Request;
 
-use crate::templates::footer::Footer;
-use crate::templates::nav::Nav;
-
 // You can change some file path and image name pattern stuff here.
 use crate::data::gallery::*;
 
@@ -233,72 +230,66 @@ pub fn gallery() -> Html {
     };
 
     // Final HTML
-    html! {
-        <root>
-            <div class={CONTENT}>
-                <Nav />
-                <div class={SITE_CONTENT}>
-                    <h1>
-                        { "Hu Tao Gallery" }
-                        <br />
-                        { "(VERY IMPORTANT!)" }
-                    </h1>
-                    <button class={classes!(set_close_button)}
-                            onclick={handle_img_click(0)}
-                    >
-                        {"X"}
-                    </button>
-                    <button class={classes!(set_prev_button)}
-                            onclick={handle_img_click(prev_img)}
-                    >
-                        {"<"}
-                    </button>
-                    <button class={classes!(set_next_button)}
-                            onclick={handle_img_click(next_img)}
-                    >
-                        {">"}
-                    </button>
-                    {pagination()}
-                    <section class="hu-tao-gallery">
-                        {set_images(1,
-                            first_quarter,
-                            current_page.clone(),
-                            Some(String::from("column_1")),
-                            Some(String::from("column")),
-                            None
-                        )}
+    wrap_site(html! {
+        <>
+            <h1>
+                { "Hu Tao Gallery" }
+                <br />
+                { "(VERY IMPORTANT!)" }
+            </h1>
+            <button class={classes!(set_close_button)}
+                    onclick={handle_img_click(0)}
+            >
+                {"X"}
+            </button>
+            <button class={classes!(set_prev_button)}
+                    onclick={handle_img_click(prev_img)}
+            >
+                {"<"}
+            </button>
+            <button class={classes!(set_next_button)}
+                    onclick={handle_img_click(next_img)}
+            >
+                {">"}
+            </button>
+            {pagination()}
+            <section class="hu-tao-gallery">
+                {set_images(1,
+                    first_quarter,
+                    current_page.clone(),
+                    Some(String::from("column_1")),
+                    Some(String::from("column")),
+                    None
+                )}
 
-                        {set_images(
-                            first_quarter,
-                            second_quarter,
-                            current_page.clone(),
-                            Some(String::from("column_2")),
-                            Some(String::from("column")),
-                            None
-                        )}
+                {set_images(
+                    first_quarter,
+                    second_quarter,
+                    current_page.clone(),
+                    Some(String::from("column_2")),
+                    Some(String::from("column")),
+                    None
+                )}
 
-                        {set_images(
-                            second_quarter,
-                            third_quarter,
-                            current_page.clone(),
-                            Some(String::from("column_3")),
-                            Some(String::from("column")),
-                            None
-                        )}
+                {set_images(
+                    second_quarter,
+                    third_quarter,
+                    current_page.clone(),
+                    Some(String::from("column_3")),
+                    Some(String::from("column")),
+                    None
+                )}
 
-                        {set_images(
-                            third_quarter,
-                            PAGE_SIZE+1,
-                            current_page.clone(),
-                            Some(String::from("column_4")),
-                            Some(String::from("column")),
-                            None
-                        )}
-                    </section>
-                    {pagination()}
-                </div>
-            </div>
-            <Footer />
-        </root>
-    }
+                {set_images(
+                    third_quarter,
+                    PAGE_SIZE+1,
+                    current_page.clone(),
+                    Some(String::from("column_4")),
+                    Some(String::from("column")),
+                    None
+                )}
+            </section>
+            {pagination()}
+        </>
+    })
 }

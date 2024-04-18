@@ -64,6 +64,9 @@ pub fn nav() -> Html {
                 <div key={"about_me"} class={classes!{set_nav_item_class()}} onclick={callback_nav(Route::AboutMe)}>
                     <a href={"javascript:void(0);"}>{ "About Me" }</a>
                 </div>
+                <div key={"blog"} class={classes!{set_nav_item_class()}} onclick={callback_nav(Route::Blog)}>
+                    <a href={"javascript:void(0);"}>{ "Blog" }</a>
+                </div>
                 <div key={"gallery"} class={classes!{set_nav_item_class()}} onclick={callback_nav(Route::Gallery)}>
                     <a href={"javascript:void(0);"}>{ "Gallery" }</a>
                 </div>

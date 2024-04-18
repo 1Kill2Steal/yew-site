@@ -8,6 +8,12 @@ pub enum Route {
     AboutMe,
     #[at("/gallery")]
     Gallery,
+
+    #[at("/blog")]
+    Blog,
+    #[at("/blog/test")]
+    BlogTest,
+
     #[not_found]
     #[at("/404")]
     NotFound,
