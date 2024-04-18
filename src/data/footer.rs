@@ -4,7 +4,7 @@ use std::collections::HashMap;
 use crate::enums::Socials;
 use crate::structs::ImageElement;
 
-static DIRECTORY: &str = "public/socials/";
+static DIRECTORY: &str = "/public/socials/";
 static EXTENSION: &str = ".svg";
 
 lazy_static! {
