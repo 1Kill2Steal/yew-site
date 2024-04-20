@@ -6,3 +6,12 @@
     opacity: 1;
   }
 }
+
+@keyframes sized_out {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}

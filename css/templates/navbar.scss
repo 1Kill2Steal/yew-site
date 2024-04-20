@@ -16,20 +16,24 @@ nav {
 
   z-index: var(--navbar-overlay);
 
-  border-bottom: 3px solid var(--red);
+  border-bottom: var(--nav-border-size) solid var(--red);
   height: var(--nav-height);
   transition: all var(--speed) var(--bezier-primary);
+  /* I swear 90% of the CSS undefined behavior is fixed with this property */
+  box-sizing: border-box;
 }
 .nav-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  width: 100vw;
 }
 
 /* Underline effect */
-.nav-item {
+.nav-item,
+.nav-section {
   display: inline-block;
   padding: 15px;
+  width: 22vw;
 }
 .nav-item::after {
   content: "";
@@ -44,6 +48,49 @@ nav {
 }
 .nav-item:hover::after {
   opacity: 100%;
+}
+/* Nav section styling */
+summary,
+.section-nav-items a,
+.mobile-section-nav-items a {
+  color: var(--red);
+  transition: var(--quick-speed) var(--bezier-primary);
+}
+summary:hover,
+.section-nav-items a:hover {
+  color: var(--dark-red);
+}
+.mobile-section-nav-items a:hover {
+  color: var(--red);
+}
+/* Actually that marker is pretty cool to be honest */
+/*
+summary::marker {
+  content: "";
+}
+*/
+.section-nav-items,
+.mobile-section-nav-items {
+  display: grid;
+}
+.section-nav-items {
+  background-color: var(--black);
+  position: relative;
+  inset: 50%;
+  translate: -50% -50%;
+  font-size: 0.8em;
+  border: var(--nav-border-size) solid var(--red);
+  border-top: none;
+}
+.section-nav-items a,
+.mobile-section-nav-items a {
+  color: var(--light-red);
+}
+.section-nav-items a {
+  padding: 10px 0;
+}
+.mobile-section-nav-items a {
+  padding: 20px 0;
 }
 
 /**
@@ -101,7 +148,8 @@ nav {
   .nav-container {
     flex-wrap: wrap;
   }
-  .nav-item {
+  .nav-item,
+  .nav-section {
     display: none;
   }
 }

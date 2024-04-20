@@ -9,39 +9,41 @@ pub fn nav() -> Html {
         let item = mobile_nav.clone();
         Callback::from(move |_| item.set(!*item))
     };
-    let opened_nav_item = "mobile-nav-item";
-    let set_nav_item_class = || {
+    let nav = String::from("nav");
+    let nav_container = String::from("nav-container");
+    let mobile_nav_button = String::from("mobile-nav-button");
+    let nav_item = String::from("nav-item");
+    let nav_section = String::from("nav-section");
+    let section_navigation_items = String::from("section-nav-items");
+    let opened = || String::from("opened-");
+    let mobile = || String::from("mobile-");
+    // let opened_mobile = || String::from("opened-mobile-");
+    let (
+        set_nav,
+        set_nav_container,
+        set_nav_button,
+        set_nav_item_class,
+        set_nav_section_class,
+        set_nav_section_items,
+    ) = {
         if *mobile_nav {
-            "nav-item"
+            (
+                nav,
+                nav_container,
+                mobile_nav_button,
+                nav_item,
+                nav_section,
+                section_navigation_items,
+            )
         } else {
-            opened_nav_item
-        }
-    };
-
-    let opened_nav_container = "opened-nav-container";
-    let set_nav_container = || {
-        if *mobile_nav {
-            "nav-container"
-        } else {
-            opened_nav_container
-        }
-    };
-
-    let opened_nav_button = "opened-mobile-nav-button";
-    let set_nav_button = || {
-        if *mobile_nav {
-            "mobile-nav-button"
-        } else {
-            opened_nav_button
-        }
-    };
-
-    let opened_nav = "opened-nav";
-    let set_nav = || {
-        if *mobile_nav {
-            "nav"
-        } else {
-            opened_nav
+            (
+                opened() + &nav,
+                opened() + &nav_container,
+                opened() + &mobile_nav_button,
+                mobile() + &nav_item,
+                mobile() + &nav_section,
+                mobile() + &section_navigation_items,
+            )
         }
     };
 
@@ -53,21 +55,26 @@ pub fn nav() -> Html {
     };
 
     html! {
-        <nav class={classes!{set_nav()}}>
-            <div key={"mobile_nav"} class={classes!{set_nav_button()}} onclick={flip()}>
+        <nav class={&set_nav}>
+            <div key={"mobile_nav"} class={&set_nav_button} onclick={flip()}>
                 <a href={"javascript:void(0);"}>{ "☰" }</a>
             </div>
-            <div key={"nav_container"} class={classes!{set_nav_container()}}>
-                <div key={"homepage"} class={classes!{set_nav_item_class()}} onclick={callback_nav(Route::Homepage)}>
+            <div key={"nav_container"} class={&set_nav_container}>
+                <div key={"homepage"} class={&set_nav_item_class} onclick={callback_nav(Route::Homepage)}>
                     <a href={"javascript:void(0);"}>{ "Homepage" }</a>
                 </div>
-                <div key={"about_me"} class={classes!{set_nav_item_class()}} onclick={callback_nav(Route::AboutMe)}>
+                <div key={"about_me"} class={&set_nav_item_class} onclick={callback_nav(Route::AboutMe)}>
                     <a href={"javascript:void(0);"}>{ "About Me" }</a>
                 </div>
-                <div key={"blog"} class={classes!{set_nav_item_class()}} onclick={callback_nav(Route::Blog)}>
-                    <a href={"javascript:void(0);"}>{ "Blog" }</a>
-                </div>
-                <div key={"gallery"} class={classes!{set_nav_item_class()}} onclick={callback_nav(Route::Gallery)}>
+                <details key={"blog_details"} class={&set_nav_section_class}>
+                    <summary>{"Blog"}</summary>
+                    <div key={"blog_navigation"} class={&set_nav_section_items}>
+                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::Blog)}>{ "Blog Navigation" }</a>
+                        <br />
+                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::BlogTest)}>{ "Test Blog" }</a>
+                    </div>
+                </details>
+                <div key={"gallery"} class={&set_nav_item_class} onclick={callback_nav(Route::Gallery)}>
                     <a href={"javascript:void(0);"}>{ "Gallery" }</a>
                 </div>
             </div>

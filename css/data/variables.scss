@@ -3,10 +3,15 @@
   --footer_height: 250px;
   --black: #111;
   --dark_gray: #333;
+  --light-red: #e77;
   --red: #e00;
+  --dark-red: #700;
   --white: #eee;
 
+  /* Navbar variables */
   --nav-height: 69px;
+  --nav-button-size: 2em;
+  --nav-border-size: 3px;
 
   /* Margins */
   --col_side_margin: 10px;
@@ -15,12 +20,11 @@
 
   /* Animation preset */
   --speed: 0.5s;
+  --quick-speed: 0.25s;
   --bezier-primary: ease-in-out;
 
   /* Special mobile nav button offset */
   --bottom-nav-offset: 69%;
-
-  --nav-button-size: 2em;
 
   /* Gallery specific variables */
   --prev-next-distance: 5%;
