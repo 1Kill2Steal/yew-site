@@ -56,7 +56,7 @@ pub fn footer() -> Html {
                 </a>
                 {" & Code is free to use (MIT license) on "}
                 <a href="https://www.github.com/" target="_blank">
-                {"Github"}
+                {"GitHub"}
                 </a>
             </p>
         </footer>
