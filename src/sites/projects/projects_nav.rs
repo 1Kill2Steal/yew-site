@@ -15,7 +15,7 @@ pub fn projects() -> Html {
     };
     wrap_site(html! {
         <>
-            <h1>{ "Blog navigation" }</h1>
+            <h1>{ "Projects" }</h1>
             <p>
                 <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectSerenityDiscordBot)}>
                     {"Serenity discord bot"}
