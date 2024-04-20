@@ -14,6 +14,11 @@ pub enum Route {
     #[at("/blog/test")]
     BlogTest,
 
+    #[at("/projects")]
+    Projects,
+    #[at("/projects/serenity-discord-bot")]
+    ProjectSerenityDiscordBot,
+
     #[not_found]
     #[at("/404")]
     NotFound,

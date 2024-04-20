@@ -1,6 +1,17 @@
 @use "../data/variables.scss";
 
+/**
+ * NOTE:
+ * When there's more than 5 items a fixed font-size can mess around the text
+ * alignment. Using a viewport width is a way to overcome that issue while
+ * also making sure that everything is visible on larger screens. In any
+ * case, it's tricky to manage more than 6 items on the top anyway. It's
+ * reccommended to just place them in sections when possible or use a different
+ * form of navigation if it's not feasible.
+ */
 nav {
+  font-size: 0.95em;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,12 +30,13 @@ nav {
   border-bottom: var(--nav-border-size) solid var(--red);
   height: var(--nav-height);
   transition: all var(--speed) var(--bezier-primary);
+
   /* I swear 90% of the CSS undefined behavior is fixed with this property */
   box-sizing: border-box;
 }
 .nav-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   width: 100vw;
 }
 
@@ -32,7 +44,8 @@ nav {
 .nav-item,
 .nav-section {
   display: inline-block;
-  padding: 15px;
+  padding: var(--nav-item-padding);
+  margin-top: 2px;
   width: 22vw;
 }
 .nav-item::after {
@@ -50,13 +63,15 @@ nav {
   opacity: 100%;
 }
 /* Nav section styling */
-summary,
+.nav-section summary,
+.mobile-nav-section summary,
 .section-nav-items a,
 .mobile-section-nav-items a {
   color: var(--red);
   transition: var(--quick-speed) var(--bezier-primary);
 }
-summary:hover,
+.nav-section summary:hover,
+.mobile-nav-section summary:hover,
 .section-nav-items a:hover {
   color: var(--dark-red);
 }
@@ -76,8 +91,7 @@ summary::marker {
 .section-nav-items {
   background-color: var(--black);
   position: relative;
-  inset: 50%;
-  translate: -50% -50%;
+  margin-top: var(--nav-item-padding);
   font-size: 0.8em;
   border: var(--nav-border-size) solid var(--red);
   border-top: none;
@@ -87,7 +101,7 @@ summary::marker {
   color: var(--light-red);
 }
 .section-nav-items a {
-  padding: 10px 0;
+  padding: 10px;
 }
 .mobile-section-nav-items a {
   padding: 20px 0;
@@ -130,7 +144,7 @@ summary::marker {
 }
 
 /* Media rules for proper responsiveness */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
   nav {
     flex-direction: column-reverse;
   }
@@ -142,7 +156,8 @@ summary::marker {
     display: block;
     font-size: var(--nav-button-size);
   }
-  .mobile-nav-item {
+  .mobile-nav-item,
+  .mobile-nav-section {
     margin: 60px 0;
   }
   .nav-container {

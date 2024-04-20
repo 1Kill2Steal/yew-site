@@ -18,6 +18,14 @@
   --download-bar-margin: -1em;
   --download-bar-bottom: 1.69em;
 
+  /* Paddings */
+  /**
+   * This value is sacred...
+   * I'm disappointing for having to use magical constants...
+   * I really wish this is the only one used.
+   */
+  --nav-item-padding: 15px;
+
   /* Animation preset */
   --speed: 0.5s;
   --quick-speed: 0.25s;

@@ -1,0 +1,8 @@
+@use "../data/variables.scss";
+
+.project-details summary {
+  transition: var(--quick-speed) var(--bezier-primary);
+}
+.project-details summary:hover {
+  color: gray;
+}
