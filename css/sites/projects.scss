@@ -6,3 +6,6 @@
 .project-details summary:hover {
   color: gray;
 }
+.project-item {
+  margin: var(--mobile-item-margin);
+}
