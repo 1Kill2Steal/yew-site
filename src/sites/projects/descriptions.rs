@@ -3,6 +3,9 @@ use super::*;
 pub fn serenity_discord_bot_description() -> Html {
     html! {
         <>
+            <br />
+            <h2>{"Serenity Discord Bot"}</h2>
+            <br />
             <a href="https://github.com/1Kill2Steal/serenity-discord-bot" target="_blank">
                 {"GitHub repo"}
             </a>

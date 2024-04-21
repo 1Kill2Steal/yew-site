@@ -17,9 +17,6 @@ pub fn serenity_discord_bot() -> Html {
             <a href={"javascript:void(0);"} onclick={callback_nav(Route::Projects)}>
                 {"Go back"}
             </a>
-            <br />
-            <h2>{"Serenity Discord Bot"}</h2>
-            <br />
             {serenity_discord_bot_description()}
         </>
     })
