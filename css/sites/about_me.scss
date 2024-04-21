@@ -9,3 +9,15 @@ ul {
 li {
   padding: 10px 0;
 }
+/**
+ * Since it has a bunch of links, extra margin will make it more
+ * convenient for mobile users to navigate through them.
+ */
+.other-projects li {
+  margin: 15px 0;
+}
+li img {
+  width: var(--primary-font-size);
+  /* Yeah bruh, pretty deprecated ikr */
+  vertical-align: middle;
+}

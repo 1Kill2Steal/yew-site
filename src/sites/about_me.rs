@@ -44,34 +44,53 @@ pub fn details() -> Html {
             </ul>
 
             <h2>{"Other projects"}</h2>
-            <ul>
+            <ul class={"other-projects"}>
                 <li>
                     <a href="https://github.com/1Kill2Steal/serenity-discord-bot"
                         target="_blank"
                     >
-                        {"Discord bot in Rust"}
+                        {"Discord bot"}
                     </a>
+                    {" "}
+                    <img src="https://raw.githubusercontent.com/1Kill2Steal/skill-icons/main/icons/Rust.svg" />
                 </li>
                 <li>
                     <a href="https://github.com/1Kill2Steal/discord-interactions-bot"
                         target="_blank"
                     >
-                        {"Discord bot in TypeScript"}
+                        {"Discord bot"}
                     </a>
-                    {" (Yes, I don't only do Rust)"}
+                    {" "}
+                    <img src="https://raw.githubusercontent.com/1Kill2Steal/skill-icons/main/icons/TypeScript.svg" />
                 </li>
                 <li>
                     <a href="https://github.com/1Kill2Steal/leetcode-trees-rs"
                         target="_blank"
                     >
-                        {"LeetCode mini library in Rust"}
+                        {"LeetCode mini library"}
                     </a>
+                    {" "}
+                    <img src="https://raw.githubusercontent.com/1Kill2Steal/skill-icons/main/icons/Rust.svg" />
                 </li>
                 <li>
                     <a href="https://github.com/1Kill2Steal/hunger-games-website"
                         target="_blank"
                     >
-                        {"Hunger Games Website with TypeScript"}
+                        {"Hunger Games Website"}
+                    </a>
+                    {" "}
+                    <img src="https://raw.githubusercontent.com/1Kill2Steal/skill-icons/main/icons/HTML.svg" />
+                    {" "}
+                    <img src="https://raw.githubusercontent.com/1Kill2Steal/skill-icons/main/icons/CSS.svg" />
+                    {" "}
+                    <img src="https://raw.githubusercontent.com/1Kill2Steal/skill-icons/main/icons/TypeScript.svg" />
+                    <br />
+                    <br />
+                    {"- hosted on "}
+                    <a href="https://1kill2steal.github.io/hunger-games-website/"
+                        target="_blank"
+                    >
+                        {"GitHub Pages"}
                     </a>
                 </li>
                 <li>
