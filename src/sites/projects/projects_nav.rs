@@ -3,8 +3,6 @@ use super::*;
 use crate::routes::Route;
 use yew_router::prelude::*;
 
-const PROJECT_DETAILS_CLASS: &'static str = "project-details";
-
 #[function_component(Projects)]
 pub fn projects() -> Html {
     let nav = use_navigator().unwrap();

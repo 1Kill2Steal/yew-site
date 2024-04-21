@@ -1,11 +1,11 @@
 @use "../data/variables.scss";
 
-.project-details summary {
-  transition: var(--quick-speed) var(--bezier-primary);
+/* I can't believe I have to set these... */
+.project-showcase img {
+  max-width: 90vw;
+  max-height: 90vh;
 }
-.project-details summary:hover {
-  color: gray;
-}
+
 .project-item {
   margin: var(--mobile-item-margin);
 }

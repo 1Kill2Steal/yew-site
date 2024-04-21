@@ -1,7 +1,17 @@
 use super::*;
 
-pub fn serenity_discord_bot_description() -> Html {
+const PROJECT_SHOWCASE: &'static str = "project-showcase";
+
+fn project_showcase_wrap(item: Html) -> Html {
     html! {
+        <div class={PROJECT_SHOWCASE}>
+            {item}
+        </div>
+    }
+}
+
+pub fn serenity_discord_bot_description() -> Html {
+    project_showcase_wrap(html! {
         <>
             <br />
             <h2>{"Serenity Discord Bot"}</h2>
@@ -37,11 +47,11 @@ pub fn serenity_discord_bot_description() -> Html {
             </ul>
             <br />
         </>
-    }
+    })
 }
 
 pub fn counting_blinks_description() -> Html {
-    html! {
+    project_showcase_wrap(html! {
         <>
             <br />
             <h2>{"Counting Blinks"}</h2>
@@ -76,5 +86,5 @@ pub fn counting_blinks_description() -> Html {
             <img src="/public/projects/counting-blinks.gif" />
             <br />
         </>
-    }
+    })
 }
