@@ -9,7 +9,7 @@ use crate::sites::{
     blog::{blog_nav::Blog, blog_test::BlogTest},
     gallery::Gallery,
     homepage::Homepage,
-    projects::{projects_nav::Projects, serenity_discord_bot::ProjectSerenityDiscordBot},
+    projects::{projects_nav::Projects, *},
 };
 
 pub fn switch(routes: Route) -> Html {
@@ -33,6 +33,9 @@ pub fn switch(routes: Route) -> Html {
         },
         Route::ProjectSerenityDiscordBot => html! {
             <ProjectSerenityDiscordBot />
+        },
+        Route::ProjectCountingBlinks => html! {
+            <ProjectCountingBlinks />
         },
 
         Route::Gallery => html! {

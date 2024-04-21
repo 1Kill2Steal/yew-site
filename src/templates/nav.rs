@@ -80,6 +80,8 @@ pub fn nav() -> Html {
                         <a href={"javascript:void(0);"} onclick={callback_nav(Route::Projects)}>{ "Projects Navigation" }</a>
                         <br />
                         <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectSerenityDiscordBot)}>{ "Serenity Discord Bot" }</a>
+                        <br />
+                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectCountingBlinks)}>{ "Counting Blinks" }</a>
                     </div>
                 </details>
                 <div key={"gallery"} class={&set_nav_item_class} onclick={callback_nav(Route::Gallery)}>

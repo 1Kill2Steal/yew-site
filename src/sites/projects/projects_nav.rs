@@ -16,15 +16,28 @@ pub fn projects() -> Html {
     wrap_site(html! {
         <>
             <h1>{ "Projects" }</h1>
-            <p>
-                <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectSerenityDiscordBot)}>
-                    {"Serenity discord bot"}
-                </a>
-            </p>
-            <details class={PROJECT_DETAILS_CLASS}>
-                <summary>{"Description"}</summary>
-                {serenity_discord_bot_description()}
-            </details>
+            <div tag={"serenity_discord_bot"} class={"project-item"}>
+                <p>
+                    <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectSerenityDiscordBot)}>
+                        {"Serenity discord bot"}
+                    </a>
+                </p>
+                <details class={PROJECT_DETAILS_CLASS}>
+                    <summary>{"Description"}</summary>
+                    {serenity_discord_bot_description()}
+                </details>
+            </div>
+            <div tag={"counting_blinks"} class={"project-item"}>
+                <p>
+                    <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectCountingBlinks)}>
+                        {"Counting Blinks"}
+                    </a>
+                </p>
+                <details class={PROJECT_DETAILS_CLASS}>
+                    <summary>{"Description"}</summary>
+                    {counting_blinks_description()}
+                </details>
+            </div>
         </>
     })
 }

@@ -18,6 +18,8 @@ pub enum Route {
     Projects,
     #[at("/projects/serenity-discord-bot")]
     ProjectSerenityDiscordBot,
+    #[at("/projects/counting-blinks")]
+    ProjectCountingBlinks,
 
     #[not_found]
     #[at("/404")]
