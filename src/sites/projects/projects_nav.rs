@@ -22,6 +22,13 @@ pub fn projects() -> Html {
                         </a>
                     </p>
                 </div>
+                <div tag={"discord_interactions_bot"} class={"project-item"}>
+                    <p>
+                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectDiscordInteractionsBot)}>
+                            {"Discord interactions bot"}
+                        </a>
+                    </p>
+                </div>
                 <div tag={"counting_blinks"} class={"project-item"}>
                     <p>
                         <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectCountingBlinks)}>

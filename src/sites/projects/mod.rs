@@ -17,6 +17,12 @@ pub fn serenity_discord_bot() -> Html {
     wrap_project_subsite(nav, serenity_discord_bot_description())
 }
 
+#[function_component(ProjectDiscordInteractionsBot)]
+pub fn discord_interactions_bot() -> Html {
+    let nav = use_navigator().unwrap();
+    wrap_project_subsite(nav, discord_interactions_bot_description())
+}
+
 #[function_component(ProjectCountingBlinks)]
 pub fn counting_blinks() -> Html {
     let nav = use_navigator().unwrap();

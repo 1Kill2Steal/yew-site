@@ -64,6 +64,74 @@ pub fn serenity_discord_bot_description() -> Html {
     })
 }
 
+pub fn discord_interactions_bot_description() -> Html {
+    let assets_folder = || String::from("/public/projects/discord-interactions-bot/");
+    project_showcase_wrap(html! {
+        <>
+            <br />
+
+            <h2>{"Discord Interactions Bot"}</h2>
+
+            <br />
+            <a href="https://github.com/1Kill2Steal/serenity-discord-bot" target="_blank">
+                {"GitHub repo"}
+            </a>
+            <br />
+            <br />
+
+            {"It's written in TypeScript and it uses the "}
+            <a href="https://discord.js.org/" target="_blank">
+                {"discord.js"}
+            </a>
+            {" library."}
+
+            <br />
+
+            {"It was made for "}
+            <a href="https://www.youtube.com/@nopengoo" target="_blank">
+                {"Nopengoo"}
+            </a>
+            {", a content creator for Genshin Impact animations. Here's the invite link to "}
+            <a href="https://discord.gg/smhQTCwaAF" target="_blank">
+                {"the discord server"}
+            </a>
+            {"."}
+
+            <br />
+            <br />
+
+            {"Additional features:"}
+            <br />
+            <ul>
+                <li>
+                {"Database handling with MongoDB."}
+                </li>
+            </ul>
+
+            <br />
+
+            <h4>{"Project showcase content"}</h4>
+
+            <div class="project-videos">
+                <video controls=true>
+                    <source src={assets_folder() + "showcase-1.mp4"} type="video/mp4" />
+                </video>
+                <video controls=true>
+                    <source src={assets_folder() + "showcase-2.mp4"} type="video/mp4" />
+                </video>
+                <video controls=true>
+                    <source src={assets_folder() + "showcase-3.mp4"} type="video/mp4" />
+                </video>
+                <video controls=true>
+                    <source src={assets_folder() + "showcase-4.mp4"} type="video/mp4" />
+                </video>
+            </div>
+
+            <br />
+        </>
+    })
+}
+
 pub fn counting_blinks_description() -> Html {
     project_showcase_wrap(html! {
         <>

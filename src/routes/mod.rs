@@ -18,6 +18,8 @@ pub enum Route {
     Projects,
     #[at("/projects/serenity-discord-bot")]
     ProjectSerenityDiscordBot,
+    #[at("/projects/discord-interactions-bot")]
+    ProjectDiscordInteractionsBot,
     #[at("/projects/counting-blinks")]
     ProjectCountingBlinks,
 

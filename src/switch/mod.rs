@@ -34,6 +34,9 @@ pub fn switch(routes: Route) -> Html {
         Route::ProjectSerenityDiscordBot => html! {
             <ProjectSerenityDiscordBot />
         },
+        Route::ProjectDiscordInteractionsBot => html! {
+            <ProjectDiscordInteractionsBot />
+        },
         Route::ProjectCountingBlinks => html! {
             <ProjectCountingBlinks />
         },

@@ -81,6 +81,8 @@ pub fn nav() -> Html {
                         <br />
                         <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectSerenityDiscordBot)}>{ "Serenity Discord Bot" }</a>
                         <br />
+                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectDiscordInteractionsBot)}>{ "Discord Interactions Bot" }</a>
+                        <br />
                         <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectCountingBlinks)}>{ "Counting Blinks" }</a>
                     </div>
                 </details>
