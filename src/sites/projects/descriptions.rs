@@ -58,6 +58,9 @@ pub fn serenity_discord_bot_description() -> Html {
                 <video controls=true>
                     <source src={assets_folder() + "showcase-3.mp4"} type="video/mp4" />
                 </video>
+                <video controls=true>
+                    <source src={assets_folder() + "showcase-4.mp4"} type="video/mp4" />
+                </video>
             </div>
             <br />
         </>
