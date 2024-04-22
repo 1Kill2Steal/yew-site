@@ -1,11 +1,23 @@
 @use "../data/variables.scss";
 
 /* I can't believe I have to set these... */
-.project-showcase img {
+.project-showcase img,
+.project-videos video {
   max-width: 90vw;
   max-height: 90vh;
 }
 
 .project-item {
   margin: var(--mobile-item-margin);
+}
+
+.project-videos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.project-videos video {
+  margin: 10px;
+  border: 3px dotted red;
 }

@@ -11,6 +11,7 @@ fn project_showcase_wrap(item: Html) -> Html {
 }
 
 pub fn serenity_discord_bot_description() -> Html {
+    let assets_folder = || String::from("/public/projects/serenity-discord-bot/");
     project_showcase_wrap(html! {
         <>
             <br />
@@ -45,6 +46,19 @@ pub fn serenity_discord_bot_description() -> Html {
                 {"Continuous Integration via GitHub Actions."}
                 </li>
             </ul>
+            <br />
+            <h4>{"Project showcase content"}</h4>
+            <div class="project-videos">
+                <video controls=true>
+                    <source src={assets_folder() + "showcase-1.mp4"} type="video/mp4" />
+                </video>
+                <video controls=true>
+                    <source src={assets_folder() + "showcase-2.mp4"} type="video/mp4" />
+                </video>
+                <video controls=true>
+                    <source src={assets_folder() + "showcase-3.mp4"} type="video/mp4" />
+                </video>
+            </div>
             <br />
         </>
     })
