@@ -66,9 +66,6 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
     };
     blog_showcase_wrap(html! {
         <>
-            {format!("Is clipboard supported?: {}", *clipboard.is_supported)}
-            <br />
-            {format!("Clipboard text: {:#?}", *clipboard.text)}
             <h1>{ "Understanding Big O Notation" }</h1>
             {blog_metadata(
                 clipboard,
