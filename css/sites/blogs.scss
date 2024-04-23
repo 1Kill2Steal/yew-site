@@ -20,6 +20,15 @@
   margin-right: var(--side-content-offset);
   margin-left: var(--side-content-offset);
 }
-.blog-showcase details a {
-  margin: 0;
+.blog-showcase img {
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.blog-contents-items > * {
+  margin: 20px 0;
+}
+
+.blog-contents-items a::before {
+  content: " ";
 }

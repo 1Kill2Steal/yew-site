@@ -67,3 +67,16 @@ p {
   margin-left: var(--side-content-offset);
   margin-right: var(--side-content-offset);
 }
+/**
+ * This is a special font to make sure that the Nerd Fonts work everywhere
+ */
+.nerd-font-glyph {
+  font-family: "Font Awesome 6 Free";
+}
+/**
+ * Invert the colors for all the LaTeX SVG graphics.
+ */
+.tex-svg {
+  filter: invert(1);
+  width: var(--tex-item-width);
+}

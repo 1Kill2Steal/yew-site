@@ -105,6 +105,8 @@ summary::marker {
 }
 .mobile-section-nav-items a {
   padding: 20px 0;
+  margin: auto;
+  max-width: 90vw;
 }
 
 /**
@@ -153,7 +155,11 @@ summary::marker {
     width: 100vw;
   }
   .mobile-nav-button {
-    display: block;
+    display: flex;
+    /* I don't know why there was a random top value */
+    top: 0;
+    justify-content: center;
+    align-items: center;
     font-size: var(--nav-button-size);
   }
   .mobile-nav-item,

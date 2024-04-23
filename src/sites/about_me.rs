@@ -28,7 +28,7 @@ pub fn details() -> Html {
 
             <h2>{"Hobbies"}</h2>
 
-            <ul>
+            <ul class={"hobbies"}>
                 <li>
                 {"Linux (imagine having an OS as a hobby)"}
                 </li>

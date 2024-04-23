@@ -2,9 +2,12 @@
 @use "../data/keyframes.scss";
 
 ul {
-  text-align: initial;
   display: inline-flex;
   flex-direction: column;
+}
+.hobbies,
+.other-projects {
+  text-align: left;
 }
 li {
   padding: 10px 0;
