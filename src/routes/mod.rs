@@ -11,8 +11,8 @@ pub enum Route {
 
     #[at("/blog")]
     Blog,
-    #[at("/blog/test")]
-    BlogTest,
+    #[at("/blog/understanding-big-o-notation")]
+    BlogUnderstandingBigONotation,
 
     #[at("/projects")]
     Projects,

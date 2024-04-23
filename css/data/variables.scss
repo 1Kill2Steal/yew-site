@@ -21,6 +21,11 @@
   --download-bar-bottom: 1.69em;
   --footer-items-margins: 10px;
   --mobile-item-margin: 60px 0;
+  /**
+   * The purpose of this is for a better viewing experience.
+   * We don't want the content to be sticked to the edges of the screen.
+   */
+  --side-content-offset: 2.5vw;
 
   /* Paddings */
   /**

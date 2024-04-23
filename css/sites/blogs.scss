@@ -1,0 +1,25 @@
+@use "../data/variables.scss";
+
+.blog-showcase {
+  text-align: justify;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--light-red);
+    word-break: break-word;
+    word-wrap: break-word;
+  }
+}
+.blog-showcase h1 {
+  text-align: center;
+}
+.blog-showcase > * {
+  margin-right: var(--side-content-offset);
+  margin-left: var(--side-content-offset);
+}
+.blog-showcase details a {
+  margin: 0;
+}

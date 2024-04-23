@@ -6,7 +6,7 @@ use crate::routes::Route;
 
 use crate::sites::{
     about_me::AboutMe,
-    blog::{blog_nav::Blog, blog_test::BlogTest},
+    blog::{blog_nav::*, *},
     gallery::Gallery,
     homepage::Homepage,
     projects::{projects_nav::Projects, *},
@@ -24,8 +24,8 @@ pub fn switch(routes: Route) -> Html {
         Route::Blog => html! {
             <Blog />
         },
-        Route::BlogTest => html! {
-            <BlogTest />
+        Route::BlogUnderstandingBigONotation => html! {
+            <BlogUnderstandingBigONotation />
         },
 
         Route::Projects => html! {

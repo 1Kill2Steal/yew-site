@@ -1,8 +1,5 @@
 use super::*;
 
-use crate::routes::Route;
-use yew_router::prelude::*;
-
 #[function_component(Homepage)]
 pub fn homepage() -> Html {
     let nav_gallery = use_navigator().unwrap();

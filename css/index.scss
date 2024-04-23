@@ -5,6 +5,18 @@
 @use "./sites/gallery.scss";
 @use "./sites/about_me.scss";
 @use "./sites/projects.scss";
+@use "./sites/blogs.scss";
+
+/**
+ * Special CSS glyphs.
+ *
+ * Example:
+ * I really <i class="nf nf-fa-heart"></i> <i class="nf nf-custom-vim"></i>
+ *
+ * NOTE: The output of that example is shown on their site:
+ * https://www.nerdfonts.com/cheat-sheet
+ */
+@import "https://www.nerdfonts.com/assets/css/webfont.css";
 
 body {
   position: relative;
@@ -45,6 +57,13 @@ a {
   color: var(--red);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 p {
-  margin: 2.5vw;
+  margin-left: var(--side-content-offset);
+  margin-right: var(--side-content-offset);
 }

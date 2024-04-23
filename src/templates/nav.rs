@@ -71,7 +71,7 @@ pub fn nav() -> Html {
                     <div key={"blog_navigation"} class={&set_nav_section_items}>
                         <a href={"javascript:void(0);"} onclick={callback_nav(Route::Blog)}>{ "All Blogs" }</a>
                         <br />
-                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::BlogTest)}>{ "Test Blog" }</a>
+                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::BlogUnderstandingBigONotation)}>{ "Understanding Big O Notation" }</a>
                     </div>
                 </details>
                 <details key={"projects_details"} class={&set_nav_section_class}>

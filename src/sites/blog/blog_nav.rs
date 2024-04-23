@@ -1,8 +1,5 @@
 use super::*;
 
-use crate::routes::Route;
-use yew_router::prelude::*;
-
 #[function_component(Blog)]
 pub fn blog() -> Html {
     let nav = use_navigator().unwrap();
@@ -13,14 +10,16 @@ pub fn blog() -> Html {
     };
     wrap_site(html! {
         <>
-            <h1>{ "Blog navigation" }</h1>
-            <p>
-                {"This content is a Work In Progress..."}
-                <br />
-                <a href={"javascript:void(0);"} onclick={callback_nav(Route::BlogTest)}>
-                    {"Test blog"}
-                </a>
-            </p>
+            <h1>{ "Blogs" }</h1>
+            <div tag={"blogs_list"} class={"blogs-list"}>
+                <div tag={"understanding_big_o_notation"} class={"blog-item"}>
+                    <p>
+                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::BlogUnderstandingBigONotation)}>
+                            {"Understanding Big O notation"}
+                        </a>
+                    </p>
+                </div>
+            </div>
         </>
     })
 }

@@ -1,7 +1,6 @@
 use super::*;
 
 const PROJECT_SHOWCASE: &'static str = "project-showcase";
-
 fn project_showcase_wrap(item: Html) -> Html {
     html! {
         <div class={PROJECT_SHOWCASE}>
@@ -10,7 +9,7 @@ fn project_showcase_wrap(item: Html) -> Html {
     }
 }
 
-pub fn serenity_discord_bot_description() -> Html {
+pub fn serenity_discord_bot_contents() -> Html {
     let assets_folder = || String::from("/public/projects/serenity-discord-bot/");
     project_showcase_wrap(html! {
         <>
@@ -67,7 +66,7 @@ pub fn serenity_discord_bot_description() -> Html {
     })
 }
 
-pub fn discord_interactions_bot_description() -> Html {
+pub fn discord_interactions_bot_contents() -> Html {
     let assets_folder = || String::from("/public/projects/discord-interactions-bot/");
     project_showcase_wrap(html! {
         <>
@@ -135,7 +134,7 @@ pub fn discord_interactions_bot_description() -> Html {
     })
 }
 
-pub fn counting_blinks_description() -> Html {
+pub fn counting_blinks_contents() -> Html {
     project_showcase_wrap(html! {
         <>
             <br />
