@@ -322,7 +322,15 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                     <br />
                     <br />
 
-                    {"This is pretty common to see in LeetCode. The concept of it is doing at least 1 full iteration on your data set. Here's the tricky part though: while accessing the last item of a vector is O(1). Accessing it's first item is actually O(n). You need to do a full traversal from the last item to the first one. Similarly, accessing the last item of a singly linked list is also an O(n) operation. You want to be careful with some of the data structures because a mistake like that will easily give insane runtime overhead, turning a viable solution into a bad one."}
+                    {"This is pretty common to see in LeetCode. The concept of it is doing at least
+                    one full iteration on your data set. Here's the tricky part though: while
+                    removing the last item of a vector is "}<b>{"O(1)"}</b>{". Removing its first
+                    item is actually "}<b>{"O(n)"}</b>{". You need to do a full traversal from the
+                    last item to the first one in order to rearrage all the items properly.
+                    Similarly, removing the last item of a singly linked list is also an
+                    "}<b>{"O(n)"}</b>{" operation. You want to be careful with some of the data
+                    structures because a mistake like that will easily give insane runtime
+                    overhead, turning a viable solution into a bad one."}
                 </li>
                 <li>
                     <img src="/public/blog/big-o/O-n-log-n.svg"
