@@ -314,6 +314,17 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                     it's also joked that every university student has implemented it)."}
                 </li>
                 <li>
+                    <img src="/public/blog/big-o/O-n.svg"
+                         class="tex-svg"
+                         style={format!("width: {};", TEX_ITEM_WIDTH)}
+                         alt="O of n" />
+
+                    <br />
+                    <br />
+
+                    {"This is pretty common to see in LeetCode. The concept of it is doing at least 1 full iteration on your data set. Here's the tricky part though: while accessing the last item of a vector is O(1). Accessing it's first item is actually O(n). You need to do a full traversal from the last item to the first one. Similarly, accessing the last item of a singly linked list is also an O(n) operation. You want to be careful with some of the data structures because a mistake like that will easily give insane runtime overhead, turning a viable solution into a bad one."}
+                </li>
+                <li>
                     <img src="/public/blog/big-o/O-n-log-n.svg"
                          class="tex-svg"
                          style={format!("width: calc({} + 50px);", TEX_ITEM_WIDTH)}
