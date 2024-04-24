@@ -10,6 +10,7 @@ pub fn gallery() -> Html {
     // Who would've thought I'd use someone else's GitHub repo code for reference...
     // I'm sorry and thank you at the same time
     // https://github.com/LelouchFR/windows-terminal-theme-generator/blob/61262073be3af7c39468c18b9cf8835683e00495/src/home_page.rs#L50-L63
+    let request_state = use_state(|| 0);
     let (file_size_data, file_name_data): (
         UseStateHandle<JsonFolderSizesLayout>,
         UseStateHandle<JsonImageDetailsLayout>,
@@ -17,7 +18,8 @@ pub fn gallery() -> Html {
         use_state(|| JsonFolderSizesLayout::default()),
         use_state(|| JsonImageDetailsLayout::default()),
     );
-    {
+    if *request_state != 1 {
+        let request_state = request_state.clone();
         let file_size_data = file_size_data.clone();
         let file_name_data = file_name_data.clone();
 
@@ -42,6 +44,7 @@ pub fn gallery() -> Html {
             file_size_data.set(fetched_file_size_data);
             file_name_data.set(fetched_file_name_data);
         });
+        request_state.set(1);
     }
     // You can use either or (doesn't matter) Made sure the count of compressed items matches the
     // count of the uncompressed items.
