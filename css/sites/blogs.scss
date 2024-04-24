@@ -28,6 +28,11 @@
   display: flex;
   margin: auto;
 }
+.blog-showcase hr {
+  width: 90%;
+  margin: auto;
+  color: var(--light-red);
+}
 
 .blog-details-item {
   margin: 20px 0;

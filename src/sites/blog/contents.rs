@@ -652,6 +652,8 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                 {" of "}<b>{"n"}</b>{"."}
             </p>
 
+            <hr />
+
             // Big Omega
             <p>
                 {"Big Omega (Ω) notation describes an algorithm based on its best case scenario
@@ -688,6 +690,8 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                 their difference. It can also be equal which makes it compatible with all 3
                 notation types (oh no that was a spoiler)."}
             </p>
+
+            <hr />
 
             // Big Theta
             <p>
