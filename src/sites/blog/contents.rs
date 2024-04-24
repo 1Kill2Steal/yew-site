@@ -566,7 +566,7 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                 <br />
                 {"If you only want speed: use the Sieve of Eratosthenes."}
                 <br />
-                {"If you only want a balance from the two: try out Dijkstra's approach."}
+                {"If you want a balance between the two: try out Dijkstra's approach."}
             </p>
             <p>
                 {"As stated in the start of this section. There are a lot of factors why you'd want
