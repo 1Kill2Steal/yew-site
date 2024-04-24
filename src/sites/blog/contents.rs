@@ -416,7 +416,7 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                 {optimizing_for_memory_vs_space.replace('_', " ")}
             </h2>
             <p>
-                {"This depends on a lot of factors. Although this will be the example use used: "}
+                {"This depends on a lot of factors. Although this will be the example use case: "}
             </p>
             <p>
                 {"Finding prime numbers (credit to "}
