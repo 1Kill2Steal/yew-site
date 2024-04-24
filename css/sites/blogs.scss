@@ -16,12 +16,12 @@
 .blog-showcase h1 {
   text-align: center;
 }
-
-.blog-showcase ul {
+.blog-showcase ul,
+.blog-showcase ol,
+.blog-showcase details {
   margin-right: var(--side-content-offset);
   margin-left: var(--side-content-offset);
 }
-
 .blog-showcase > img {
   max-width: 90vw;
   max-height: 90vh;
@@ -29,10 +29,6 @@
   margin: auto;
 }
 
-.blog-contents-items > * {
+.blog-details-item {
   margin: 20px 0;
-}
-
-.blog-contents-items a::before {
-  content: " ";
 }

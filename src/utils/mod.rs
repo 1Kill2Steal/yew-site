@@ -12,3 +12,33 @@ pub fn html_wrapper(item: Html, key: String, class: Option<String>, id: Option<S
         </div>
     }
 }
+
+pub fn set_iframe_gist(link: &str, height: Option<&str>) -> Html {
+    html! {
+        <iframe frameborder=0 class={data::IFRAME_GIST}
+                scrolling={"no"} seamless={"seamless"}
+                srcdoc={format!(
+                "<html>
+                    <body>
+                        <style type=\"text/css\">
+                        .gist,
+                        .gist-data {{
+                            height: {};
+                        }}
+                        </style>
+                        <script 
+                            src=\"{}\">
+                        </script>
+                    </body>
+                </html>", height.unwrap_or("auto"), link.to_owned() + ".js")}
+        ></iframe>
+    }
+}
+
+pub fn set_youtube_iframe(iframe: Html) -> Html {
+    html! {
+        <div class={"youtube-video-container"}>
+            {iframe}
+        </div>
+    }
+}
