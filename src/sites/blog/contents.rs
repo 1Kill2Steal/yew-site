@@ -157,7 +157,7 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                 </a>
                 {" is a mathematical notation that describes the behavior of a value (most commonly
                 denoted as "}<b>{"n"}</b>{") as it reaches infinity. That's how you'd see it
-                explained in most places. The mathematical explaination aside, there's a nuance in
+                explained in most places. The mathematical explanation aside, there's a nuance in
                 the programming usage of the big O notation. It can be used in both "}
                 <a href={"https://en.wikipedia.org/wiki/Time_complexity"}
                    target="_blank"
@@ -204,7 +204,7 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                 {"Compile Time"}
                 </a>
                 {" - This isn't measured with Big O notation. The compile time is the time where
-                your interpreter/compiler to translates your witten code into bytecode/machine code
+                your interpreter/compiler to translates your written code into byte-code/machine code
                 respectively."}
             </p>
             <p>
@@ -407,7 +407,7 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                     <br />
                     <br />
 
-                    {"Similiarly to "}<b>{"O(2"}<sup>{"n"}</sup>{")"}</b>{" it's useful in brute
+                    {"Similarly to "}<b>{"O(2"}<sup>{"n"}</sup>{")"}</b>{" it's useful in brute
                     force algorithms and actually evaluating "}<b>{"n!"}</b>{" (n factorial)."}
                 </li>
             </ul>
@@ -458,8 +458,8 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                          mirrored from the ones before it." />
                     <p>
                         {"Interesting right? They're mirrored. That's always the case. The
-                        explaination is rather simple: "}<b>{"3"}<sup>{"2"}</sup></b>{" is 9
-                        obviously, so whatever is a divisior of 3 is also a divisor of 9. If this
+                        explanation is rather simple: "}<b>{"3"}<sup>{"2"}</sup></b>{" is 9
+                        obviously, so whatever is a divisor of 3 is also a divisor of 9. If this
                         method is applied to an actual prime number here's how it'd look like: "}
                     </p>
                     <p>
@@ -468,7 +468,7 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                         get checked is whether 11 is divisible by 2 or 3 (because 4, 6, 8, 10 are
                         already divisible by 2 and 6 and 9 are already divisible by 3 so the math
                         for them would be excessive). Or if you prefer the mathematical
-                        explaination: "}
+                        explanation: "}
                     </p>
                     <p>
                         <i>
@@ -485,8 +485,8 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                         {")"}
                     </p>
                     <p>
-                        {"The time and space complexities for this algogirthm are tricky to explain
-                        since they revolve around using square roots, I reccomend checking "}
+                        {"The time and space complexities for this algorithm are tricky to explain
+                        since they revolve around using square roots, I recommend checking "}
                         <a href="https://en.wikipedia.org/wiki/Trial_division#Speed"
                             target="_blank"
                         >
@@ -580,9 +580,9 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                 {the_misinformation_about_big_o_complexity.replace('_', " ")}
             </h2>
             <p>
-                {"Big O notation ISN'T the all-be-it in deterimining whether or not algorithm A is
+                {"Big O notation ISN'T the all-be-it in determining whether or not algorithm A is
                 more efficient than algorithm B. There's more to it. The reason is this: Big O
-                notation, as described in the start, is the behaviour of a value (n) as it reaches
+                notation, as described in the start, is the behavior of a value (n) as it reaches
                 infinity (or in mathematical notation that'd be: n → ∞). This specific notation
                 eliminates all constant values in its determination. This means that O(2n) is
                 portrayed as O(n) (linear), just in the same way that O(1,000n) is portrayed as
@@ -707,7 +707,7 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
             </p>
             <p>
                 {"This time we have 2 constants. The 2 equations are the same from the Big O and
-                Big Omega (Ω) notations respecively."}
+                Big Omega (Ω) notations respectively."}
                 <br />
                 {"Ultimately we get a merged equation which looks like this:"}
             </p>
@@ -769,7 +769,7 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                 {"The big O notation is a mathematical way to define the worst case scenario
                 performance of an algorithm as its data set reaches infinity. This means it
                 evaluates its performance based on the upper bound of the data set. The performance
-                measured is seperated in 2 types: runtime performance (how much your CPU needs to
+                measured is separated in 2 types: runtime performance (how much your CPU needs to
                 operate on the data set) and memory performance (how much runtime memory your
                 algorithm takes based on your data set). Determining which part of your program you
                 want to optimize depends heavily on your use case. You have to evaluate which one
