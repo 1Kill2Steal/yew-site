@@ -569,11 +569,11 @@ pub fn blog_understaning_big_o_notation_contents(clipboard: yew_hooks::UseClipbo
                 {"If you want a balance between the two: try out Dijkstra's approach."}
             </p>
             <p>
-                {"As stated in the start of this section. There are a lot of factors why you'd want
-                to go for memory over speed or vice versa. For example in game development memory
-                efficiency in saving resources for your models is also a speed improvement. The
-                most important factor in determining whether you want to optimize for memory or for
-                speed is the ability to determine what you need more."}
+                {"As stated in the start of this section. There are a lot of factors to determine
+                when going for memory over speed or vice versa. For example in game development
+                memory efficiency in saving resources for your models is also a speed improvement.
+                The most important factor in determining whether you want to optimize for memory or
+                for speed is the ability to determine what you need more."}
             </p>
 
             <h2 id={the_misinformation_about_big_o_complexity}>
