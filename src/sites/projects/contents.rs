@@ -1,6 +1,6 @@
 use super::*;
 
-const PROJECT_SHOWCASE: &'static str = "project-showcase";
+const PROJECT_SHOWCASE: &str = "project-showcase";
 fn project_showcase_wrap(item: Html) -> Html {
     html! {
         <div class={PROJECT_SHOWCASE}>

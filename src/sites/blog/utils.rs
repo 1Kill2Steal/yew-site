@@ -1,5 +1,43 @@
 use super::*;
 
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Default)]
+pub struct BlogData {
+    pub date: &'static str,
+    pub reading_time: &'static str,
+    pub link: &'static str,
+    pub title: &'static str,
+}
+
+impl BlogData {
+    #[allow(dead_code)]
+    pub fn new(
+        date: &'static str,
+        reading_time: &'static str,
+        link: &'static str,
+        title: &'static str,
+    ) -> Self {
+        Self {
+            date,
+            reading_time,
+            link,
+            title,
+        }
+    }
+    pub fn from(
+        date: &'static str,
+        reading_time: &'static str,
+        link: &'static str,
+        title: &'static str,
+    ) -> Self {
+        Self {
+            date,
+            reading_time,
+            link,
+            title,
+        }
+    }
+}
+
 fn blog_showcase_wrap(item: Html) -> Html {
     html! {
         <div class={BLOG_SHOWCASE}>
@@ -75,10 +113,7 @@ fn set_section_items(items: Vec<&str>) -> Html {
 pub fn wrap_blog_subsite(
     nav: Navigator,
     clipboard: yew_hooks::UseClipboardHandle,
-    date: &'static str,
-    reading_time: &'static str,
-    link: &'static str,
-    blog_name: &str,
+    blog_data: BlogData,
     blog_contents_items: Vec<&str>,
     content_html: Html,
 ) -> Html {
@@ -95,13 +130,13 @@ pub fn wrap_blog_subsite(
             {blog_showcase_wrap(
                 html! {
                     <>
-                        <h1>{blog_name}</h1>
+                        <h1>{blog_data.title}</h1>
 
                         {blog_metadata(
                             clipboard,
-                            &date,
-                            &reading_time,
-                            link
+                            blog_data.date,
+                            blog_data.reading_time,
+                            blog_data.link
                         )}
 
                         <br />

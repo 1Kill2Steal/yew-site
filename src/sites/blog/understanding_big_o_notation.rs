@@ -697,10 +697,12 @@ pub fn understanding_big_o_notation() -> Html {
     wrap_blog_subsite(
         nav,
         clipboard,
-        "24/04/2024",
-        "≈10 mins",
-        "understanding-big-o-notation/",
-        "Understanding Big O Notation",
+        BlogData::from(
+            "24/04/2024",
+            "≈10 mins",
+            "understanding-big-o-notation/",
+            "Understanding Big O Notation",
+        ),
         vec![
             introduction,
             dictionary,
