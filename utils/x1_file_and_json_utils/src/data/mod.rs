@@ -29,6 +29,10 @@ lazy_static! {
         let name = "image_details.json";
         format!("{}/{}", PICS_JSON_PATHBUF.display(), name)
     };
+    pub static ref JSON_ARTIST_CREDITS: String = {
+        let name = "artist_credits.json";
+        format!("{}/{}", PICS_JSON_PATHBUF.display(), name)
+    };
     pub static ref JSON_FILE: fs::File = {
         let file =
         fs::File::open(JSON_FOLDER_SIZES.as_str());
@@ -45,7 +49,11 @@ lazy_static! {
         let target = "pics";
         PathBuf::from(format!("{}/{}", PICS_PATHBUF.display(), target))
     };
+}
 
+#[derive(Debug, Eq, PartialEq, serde::Serialize, serde::Deserialize, Default)]
+pub struct JsonArtistCredits {
+    pub artist_credits: std::collections::HashMap<u32, String>,
 }
 
 pub fn target_json_dir() -> ReadDir {

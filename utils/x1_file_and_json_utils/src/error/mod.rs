@@ -12,4 +12,6 @@ pub enum Error {
         left_dir_count: usize,
         right_dir_count: usize,
     },
+    #[error("! Missing image artist field at this index: {idx:?} !")]
+    MissingArtistCredit { idx: usize },
 }

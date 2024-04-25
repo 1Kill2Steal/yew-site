@@ -187,7 +187,8 @@ pub fn gallery() -> Html {
             let current_artist = artist_credits
                 .artist_credits
                 .get(&(id as u32))
-                .unwrap()
+                // NOTE: The unwrap shouldn't ever fail if you run the build.sh script tests.
+                .unwrap_or(&"".to_string())
                 .clone()
                 .to_string();
 

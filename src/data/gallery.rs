@@ -40,7 +40,6 @@ pub struct JsonImageDetailsLayout {
 pub static JSON_ARTIST_CREDITS: &str = "/json/artist_credits.json";
 #[derive(PartialEq, serde::Deserialize, Default)]
 pub struct JsonArtistCredits {
-    // These two are public cuz Hash Maps are expensive to copy over.
     pub artist_credits: HashMap<u32, String>,
 }
 

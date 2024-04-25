@@ -4,7 +4,10 @@ pub mod utils;
 
 #[cfg(test)]
 pub mod tests {
-    use crate::data::{compressed_dir, uncompressed_dir};
+    use std::fs::File;
+    use std::io::Read;
+
+    use crate::data::{compressed_dir, uncompressed_dir, JsonArtistCredits, JSON_ARTIST_CREDITS};
     use crate::error::Error;
 
     #[test]
@@ -17,6 +20,23 @@ pub mod tests {
                 right_dir_count: uncompressed_dir().count(),
             }
             .into());
+        }
+        Ok(())
+    }
+    #[test]
+    fn proper_image_credit_items_count() -> Result<(), anyhow::Error> {
+        let mut image_credit_file = File::open(JSON_ARTIST_CREDITS.as_str())?;
+        let string_content = {
+            let mut temp = String::from("");
+            let _ = image_credit_file.read_to_string(&mut temp);
+            temp
+        };
+        let image_credit_json: JsonArtistCredits = serde_json::from_str(&string_content)?;
+        for i in 1..=uncompressed_dir().count() {
+            if !(image_credit_json.artist_credits.contains_key(&(i as u32))) {
+                eprintln!("{:#?}", image_credit_json);
+                return Err(Error::MissingArtistCredit { idx: i }.into());
+            }
         }
         Ok(())
     }
