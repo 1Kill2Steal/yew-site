@@ -35,10 +35,21 @@ pub fn set_iframe_gist(link: &str, height: Option<&str>) -> Html {
     }
 }
 
-pub fn set_youtube_iframe(iframe: Html) -> Html {
+/// The link has to be an embed link. Example:
+/// https://www.youtube-nocookie.com/embed/fwxjMKBMR7s
+pub fn set_youtube_iframe(link: &'static str) -> Html {
     html! {
         <div class={"youtube-video-container"}>
-            {iframe}
+                <iframe
+                    height="100%"
+                    width="100%"
+                    src={link}
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen=true>
+                </iframe>
         </div>
     }
 }

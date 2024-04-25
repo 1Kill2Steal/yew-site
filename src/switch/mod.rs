@@ -6,7 +6,7 @@ use crate::routes::Route;
 
 use crate::sites::{
     about_me::AboutMe,
-    blog::{blog_nav::*, *},
+    blog::{blog_nav::*, understanding_big_o_notation::*},
     gallery::Gallery,
     homepage::Homepage,
     projects::{projects_nav::Projects, *},

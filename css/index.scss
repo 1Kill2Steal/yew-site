@@ -30,6 +30,8 @@ body {
   font-size: var(--primary-font-size);
 
   background-color: var(--black);
+
+  overflow-x: hidden;
 }
 
 root {

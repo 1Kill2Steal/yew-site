@@ -48,6 +48,26 @@ pub fn blog_metadata(
     }
 }
 
+fn set_section_items(items: Vec<&str>) -> Html {
+    html! {
+        <>
+        {
+            items.iter().map(|item| {
+                html!{
+                    <div class={BLOG_DETAILS_ITEM}>
+                        <a href={String::from('#') + item}
+                        class={DETAILS_ITEM_GLYPH}
+                        >
+                            {item}
+                        </a>
+                    </div>
+                }
+            }).collect::<Html>()
+        }
+        </>
+    }
+}
+
 /// This is a utility for systemizing the site contents. The `content_html` property is in the
 /// contents module of this directory.
 /// In this way it's possible to put all the Function Components in this module folder and
@@ -59,6 +79,7 @@ pub fn wrap_blog_subsite(
     reading_time: &'static str,
     link: &'static str,
     blog_name: &str,
+    blog_contents_items: Vec<&str>,
     content_html: Html,
 ) -> Html {
     let callback_nav = |target: Route| {
@@ -81,6 +102,15 @@ pub fn wrap_blog_subsite(
                             &reading_time,
                             link
                         )}
+
+                        <br />
+                        {blog_contents_navigation(
+                            set_section_items(
+                                blog_contents_items
+                            )
+                        )}
+                        <br />
+
                         {content_html}
                     </>
                 }
