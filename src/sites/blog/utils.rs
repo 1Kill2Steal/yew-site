@@ -96,6 +96,7 @@ pub fn wrap_blog_subsite(
                 html! {
                     <>
                         <h1>{blog_name}</h1>
+
                         {blog_metadata(
                             clipboard,
                             &date,
@@ -104,14 +105,18 @@ pub fn wrap_blog_subsite(
                         )}
 
                         <br />
+
                         {blog_contents_navigation(
                             set_section_items(
                                 blog_contents_items
                             )
                         )}
+
                         <br />
 
-                        {content_html}
+                        <div class={"blog-showcase-content"}>
+                            {content_html}
+                        </div>
                     </>
                 }
             )}

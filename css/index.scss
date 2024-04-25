@@ -43,7 +43,7 @@ root {
   color: var(--primary-font-color);
   text-align: center;
 
-  animation: transition_in var(--speed) ease-in-out;
+  animation: transition_in var(--speed) var(--bezier-primary);
 }
 
 .content {
@@ -130,4 +130,8 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+details summary ~ * {
+  animation: transition_in var(--quick-speed) var(--bezier-primary);
 }
