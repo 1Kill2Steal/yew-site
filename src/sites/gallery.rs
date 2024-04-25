@@ -1,3 +1,5 @@
+#![allow(clippy::redundant_closure)]
+
 use super::*;
 
 use gloo_net::http::Request;
@@ -11,17 +13,20 @@ pub fn gallery() -> Html {
     // I'm sorry and thank you at the same time
     // https://github.com/LelouchFR/windows-terminal-theme-generator/blob/61262073be3af7c39468c18b9cf8835683e00495/src/home_page.rs#L50-L63
     let request_state: UseStateHandle<bool> = use_state(|| false);
-    let (file_size_data, file_name_data): (
+    let (file_size_data, file_name_data, artist_credits): (
         UseStateHandle<JsonFolderSizesLayout>,
         UseStateHandle<JsonImageDetailsLayout>,
+        UseStateHandle<JsonArtistCredits>,
     ) = (
         use_state(|| JsonFolderSizesLayout::default()),
         use_state(|| JsonImageDetailsLayout::default()),
+        use_state(|| JsonArtistCredits::default()),
     );
     if !*request_state {
         let request_state = request_state.clone();
         let file_size_data = file_size_data.clone();
         let file_name_data = file_name_data.clone();
+        let artist_credits = artist_credits.clone();
 
         wasm_bindgen_futures::spawn_local(async move {
             let fetched_file_size_data: JsonFolderSizesLayout = Request::get(JSON_FOLDER_SIZES)
@@ -41,8 +46,18 @@ pub fn gallery() -> Html {
                 .await
                 .expect("Failed to fetch images from JSON");
 
+            let fetched_artist_credits: JsonArtistCredits = Request::get(JSON_ARTIST_CREDITS)
+                // .header(key, value)
+                .send()
+                .await
+                .expect("Failed to get the response from the requested JSON")
+                .json()
+                .await
+                .expect("Failed to fetch images from JSON");
+
             file_size_data.set(fetched_file_size_data);
             file_name_data.set(fetched_file_name_data);
+            artist_credits.set(fetched_artist_credits);
         });
         request_state.set(true);
     }
@@ -159,15 +174,24 @@ pub fn gallery() -> Html {
                 format!("{PICS_COMPRESSED_FOLDER_NAME}{img_name}{COMPRESSED_IMAGE_EXTENSION}");
             let current_uncompressed_img =
                 format!("{PICS_UNCOMPRESSED_FOLDER_NAME}{img_name}{UNCOMPRESSED_IMAGE_EXTENSION}");
-            let selected_img_class = || -> &'static str {
+            let (selected_img_class, image_artist_box): (&str, String) = {
                 if *selected_img_id == id {
-                    FULLSCREEN_OVERLAY_CLASS_NAME
+                    (
+                        FULLSCREEN_OVERLAY_CLASS_NAME,
+                        String::from(IMAGE_ARTIST_BOX_NAME),
+                    )
                 } else {
-                    ""
+                    ("", (String::from("hidden-") + IMAGE_ARTIST_BOX_NAME))
                 }
             };
+            let current_artist = artist_credits
+                .artist_credits
+                .get(&(id as u32))
+                .unwrap()
+                .clone()
+                .to_string();
 
-            let (wrapper, some_fullscreen_img) = if !selected_img_class().is_empty() {
+            let (wrapper, some_fullscreen_img) = if !selected_img_class.is_empty() {
                 ("", true)
             } else {
                 ("img-wrapper", false)
@@ -175,27 +199,49 @@ pub fn gallery() -> Html {
 
             let download_text = || "Download";
 
-            let display_img =
-                |class: Option<&'static str>, img_class: Option<&'static str>, src: String| {
-                    html! {
-                        <div key={img_name.clone()}
-                             class={class.unwrap_or("")}
+            let display_img = |class: Option<&'static str>,
+                               img_class: Option<&'static str>,
+                               src: String| {
+                html! {
+                    <div key={img_name.clone()}
+                         class={class.unwrap_or("")}
+                    >
+                        <div class={img_class.unwrap_or("")}
+                             onclick={handle_img_click(id)}
                         >
-                            <div class={img_class.unwrap_or("")}
-                                 onclick={handle_img_click(id)}
-                            >
-                                <img src={src} />
-                            </div>
-                            // Notice that it's the uncompressed one
-                            <a href={current_uncompressed_img.clone()}
-                                download={img_name.clone()}
-                                alt={img_name.replace('_', " ")}
-                            >
-                                { download_text() }
-                            </a>
+                            <img src={src} />
                         </div>
-                    }
-                };
+                        // Notice that it's the uncompressed one
+                        <a href={current_uncompressed_img.clone()}
+                            download={img_name.clone()}
+                            alt={img_name.replace('_', " ")}
+                        >
+                            { download_text() }
+                        </a>
+                        {
+                            if current_artist.is_empty() {
+                                html! {
+                                    <a href={"javascript:void(0)"}
+                                    class={image_artist_box.clone()}
+                                    >
+                                        {"Unknown artist"}
+                                    </a>
+                                }
+                            } else {
+                                html! {
+                                    <a href={current_artist.chars().take_while(|c| *c != ' ').collect::<String>()}
+                                       target="_blank"
+                                       class={image_artist_box.clone()}
+                                    >
+                                        {&current_artist.split_whitespace().skip(1).collect::<String>()}
+                                    </a>
+                                }
+                            }
+                        }
+
+                    </div>
+                }
+            };
             html! {
                 <>
                     if some_fullscreen_img {

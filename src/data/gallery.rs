@@ -37,7 +37,15 @@ pub struct JsonImageDetailsLayout {
     pub uncompressed_dir_img_names: HashMap<u32, String>,
 }
 
+pub static JSON_ARTIST_CREDITS: &str = "/json/artist_credits.json";
+#[derive(PartialEq, serde::Deserialize, Default)]
+pub struct JsonArtistCredits {
+    // These two are public cuz Hash Maps are expensive to copy over.
+    pub artist_credits: HashMap<u32, String>,
+}
+
 // CSS PROPERTY NAMES.
 
 pub static FULLSCREEN_OVERLAY_CLASS_NAME: &str = "fullscreen-overlay";
+pub static IMAGE_ARTIST_BOX_NAME: &str = "image-artist-box";
 pub static FULLSCREEN_IMG_CLASS_NAME: &str = "fullscreen-img";

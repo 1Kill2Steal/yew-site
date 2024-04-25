@@ -160,7 +160,7 @@
 
   margin: auto;
   inset: 0;
-  top: -85%;
+  top: -75%;
   z-index: var(--fullscreen-preview-elements);
 }
 .fullscreen-overlay > img:hover {
@@ -170,4 +170,14 @@
   width: 100vw;
   height: 100vh;
   margin: auto;
+}
+
+.hidden-image-artist-box {
+  display: none;
+}
+.image-artist-box {
+  /**
+   * There's overrides from fullscreen-overlay a that's why.
+   */
+  top: -25% !important;
 }
