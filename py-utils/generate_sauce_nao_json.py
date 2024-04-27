@@ -11,8 +11,6 @@ SAUCENAO_API_KEY=your-key
 
 """
 
-# from saucenao_api import SauceNao
-
 from dotenv import load_dotenv
 from os import getenv, path
 from pathlib import Path
