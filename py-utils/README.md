@@ -75,8 +75,7 @@ source .venv/bin/activate
 SAUCENAO_API_KEY=your-copied-api-key
 ```
 
-[!NOTE]
-
+> [!NOTE]
 > The required utilities can be installed via the following commands (Replace
 > `flask` with the utilities from the required utilities list.) (There's also a
 > `requirements.txt` file).
