@@ -87,7 +87,7 @@ async def main():
             delay_counter += 1
             if delay_counter == 4:
                 delay_counter = 0
-                await asyncio.sleep(30_000)
+                await asyncio.sleep(30)
 
         # Call the name number regex function.
         value = set_regex_number(item_to_match=file.name)
@@ -96,7 +96,7 @@ async def main():
         if results and results[0].similarity > 80:
             print(f"  \"{value}\": \"{results[0].source_url} {results[0].author_name}\"")
         else:
-            print(f"  \"{file.name}\": \"\"")
+            print(f"  \"{value}\": \"\"")
 
     print("}")
 
