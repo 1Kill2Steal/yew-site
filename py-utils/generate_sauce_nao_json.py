@@ -46,27 +46,47 @@ async def main():
 
     # Arguments parsing
     parser = argparse.ArgumentParser(description='Description of your program.')
-    parser.add_argument('--rate-limit', '-rl', type=bool, default=True, help='The SauceNAO API Rate Limit toggle (On by default)')
+    parser.add_argument('--rate-limit', '-rl', \
+                        type=bool, default=True, \
+                        help='The SauceNAO API Rate Limit toggle (On by default)'\
+                        )
+
+    # It doesn't HAVE to be hard coded but it's easier to hard code it in this use case.
+    parser.add_argument('--skip-existing', '-se', \
+                        type=bool, default=True, \
+                        help='Skip the hardcoded existing image credits (On by default)' \
+                        )
 
     args = parser.parse_args()
 
     rate_limit = args.rate_limit
+    skip_existing = args.skip_existing
 
     # Path variables
-    project_root = Path(path.dirname( path.dirname( path.abspath(__file__))))
+    project_root = Path(path.dirname(path.dirname(path.abspath(__file__))))
     pics_path = Path(path.join(project_root, "hutao/pics_uncompressed/"))
 
     # Managing environment variables
     load_dotenv()
     SAUCENAO_API_KEY = getenv("SAUCENAO_API_KEY")
     if not SAUCENAO_API_KEY:
-        print("Please set your SAUCENAO_API_KEY environment variable in the .env file.")
+        print("Please set your SAUCENAO_API_KEY environment variable in the",
+        ".env file.")
         return
 
     sauce = SauceNao(api_key=SAUCENAO_API_KEY)
 
-    # Rate limit management
-    delay_counter = 0
+    # Initialize the rate limit management
+    rate_limit_counter = 0
+
+    # Set your set with already existing items (so you can skip them)
+    #
+    # Reason: SauceNAO has a 100 requests per day limit so make sure you don't
+    # use unneeded requests!
+    existing_credits = {101, 102, 103, 107, 108, 113, 116, 118, 120, 121, 126,
+                        128, 131, 132, 133, 134, 135, 136, 137, 14, 142, 144,
+                        145, 146, 151, 17, 18, 21, 22, 25, 31, 43, 44, 45, 50,
+                        6, 61, 67, 69, 8, 81, 90, 96, 98}
 
     ###################
     # JSON generation #
@@ -76,25 +96,30 @@ async def main():
 
     for file in pics_path.iterdir():
         if not file.is_file():
-            continue;
+            continue
+
+        # Call the img_id from the regex function.
+        img_id = set_regex_number(item_to_match=file.name)
+
+        # Skip already checked values
+        if skip_existing and existing_credits.__contains__(img_id):
+            continue
 
         results = await sauce.from_file(file.__fspath__())
 
         # Rate limits are 4 requests per 30 seconds.
         if rate_limit:
-            delay_counter += 1
-            if delay_counter == 4:
-                delay_counter = 0
-                await asyncio.sleep(30)
+            rate_limit_counter += 1
 
-        # Call the name number regex function.
-        value = set_regex_number(item_to_match=file.name)
+        if rate_limit_counter == 4:
+            rate_limit_counter = 0
+            await asyncio.sleep(30)
 
         # Print out the JSON values pairs.
         if results and results[0].similarity > 80:
-            print(f"  \"{value}\": \"{results[0].source_url} {results[0].author_name}\"")
+            print(f"  \"{img_id}\": \"{results[0].source_url} {results[0].author_name}\"")
         else:
-            print(f"  \"{value}\": \"\"")
+            print(f"  \"{img_id}\": \"\"")
 
     print("}")
 
