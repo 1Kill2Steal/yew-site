@@ -6,8 +6,6 @@ pub enum Route {
     Homepage,
     #[at("/about-me")]
     AboutMe,
-    #[at("/gallery")]
-    Gallery,
 
     #[at("/blog")]
     Blog,
@@ -22,6 +20,9 @@ pub enum Route {
     ProjectDiscordInteractionsBot,
     #[at("/projects/counting-blinks")]
     ProjectCountingBlinks,
+
+    #[at("/gallery")]
+    Gallery,
 
     #[not_found]
     #[at("/404")]

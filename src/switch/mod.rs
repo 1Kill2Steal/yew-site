@@ -44,6 +44,7 @@ pub fn switch(routes: Route) -> Html {
         Route::Gallery => html! {
             <Gallery />
         },
+
         Route::NotFound => html! { <a align="center">{ "404 - Webpage Not Found" }</a> },
     }
 }

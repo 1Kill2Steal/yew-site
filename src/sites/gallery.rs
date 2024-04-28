@@ -151,7 +151,6 @@ pub fn gallery() -> Html {
             <button onclick={move_state(1)}>{ "+1" }</button>
             <button onclick={move_state(2)}>{ "+2" }</button>
             <button onclick={move_state(3)}>{ "+3" }</button>
-            // I don't know why this works when the total_pages is inverted...
             <button onclick={move_state(total_pages)}>{ "End" }</button>
         </div>
         }
@@ -197,9 +196,11 @@ pub fn gallery() -> Html {
 
             let download_text = || "Download";
 
+            let img_id_html = || format!("img_id={id}");
+
             let display_img = |class: Option<&'static str>,
                                img_class: Option<&'static str>,
-                               img_id: Option<&'static str>,
+                               img_id: Option<String>,
                                src: String,
                                image_artist_box: String| {
                 html! {
@@ -207,7 +208,7 @@ pub fn gallery() -> Html {
                          class={class.unwrap_or("")}
                     >
                         <div class={img_class.unwrap_or("")}
-                             id={img_id.unwrap_or("")}
+                             id={img_id.unwrap_or(String::from(""))}
                              onclick={handle_img_click(id)}
                         >
                             <img src={src} />
@@ -249,8 +250,8 @@ pub fn gallery() -> Html {
                         {
                             display_img(
                                 Some(FULLSCREEN_OVERLAY_CLASS_NAME),
-                                None,
-                                Some(FULLSCREEN_IMG_ID_NAME),
+                                Some(FULLSCREEN_IMG_CSS_NAME),
+                                Some(format!("{}&{}", FULLSCREEN_IMG_CSS_NAME, img_id_html())),
                                 current_uncompressed_img.clone(),
                                 IMAGE_ARTIST_BOX_NAME.to_owned()
                             )
@@ -260,7 +261,7 @@ pub fn gallery() -> Html {
                     {display_img(
                         None,
                         Some(wrapper),
-                        None,
+                        Some(img_id_html()),
                         current_img.clone(),
                         String::from("hidden-") + IMAGE_ARTIST_BOX_NAME
                     )}

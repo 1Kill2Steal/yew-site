@@ -47,4 +47,4 @@ pub struct JsonArtistCredits {
 
 pub static FULLSCREEN_OVERLAY_CLASS_NAME: &str = "fullscreen-overlay";
 pub static IMAGE_ARTIST_BOX_NAME: &str = "image-artist-box";
-pub static FULLSCREEN_IMG_ID_NAME: &str = "fullscreen-img";
+pub static FULLSCREEN_IMG_CSS_NAME: &str = "fullscreen-img";
