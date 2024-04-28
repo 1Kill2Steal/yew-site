@@ -199,6 +199,7 @@ pub fn gallery() -> Html {
 
             let display_img = |class: Option<&'static str>,
                                img_class: Option<&'static str>,
+                               img_id: Option<&'static str>,
                                src: String,
                                image_artist_box: String| {
                 html! {
@@ -206,6 +207,7 @@ pub fn gallery() -> Html {
                          class={class.unwrap_or("")}
                     >
                         <div class={img_class.unwrap_or("")}
+                             id={img_id.unwrap_or("")}
                              onclick={handle_img_click(id)}
                         >
                             <img src={src} />
@@ -247,7 +249,8 @@ pub fn gallery() -> Html {
                         {
                             display_img(
                                 Some(FULLSCREEN_OVERLAY_CLASS_NAME),
-                                Some(FULLSCREEN_IMG_CLASS_NAME),
+                                None,
+                                Some(FULLSCREEN_IMG_ID_NAME),
                                 current_uncompressed_img.clone(),
                                 IMAGE_ARTIST_BOX_NAME.to_owned()
                             )
@@ -257,6 +260,7 @@ pub fn gallery() -> Html {
                     {display_img(
                         None,
                         Some(wrapper),
+                        None,
                         current_img.clone(),
                         String::from("hidden-") + IMAGE_ARTIST_BOX_NAME
                     )}
