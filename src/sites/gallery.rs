@@ -313,8 +313,9 @@ pub fn gallery() -> Html {
             </button>
             {pagination()}
             <section class="hu-tao-gallery">
-                {set_images(1,
-                    first_quarter,
+                {set_images(
+                    1,
+                    first_quarter+1,
                     current_page.clone(),
                     Some(String::from("column_1")),
                     Some(String::from("column")),
@@ -322,8 +323,8 @@ pub fn gallery() -> Html {
                 )}
 
                 {set_images(
-                    first_quarter,
-                    second_quarter,
+                    first_quarter+1,
+                    second_quarter+1,
                     current_page.clone(),
                     Some(String::from("column_2")),
                     Some(String::from("column")),
@@ -331,8 +332,8 @@ pub fn gallery() -> Html {
                 )}
 
                 {set_images(
-                    second_quarter,
-                    third_quarter,
+                    second_quarter+1,
+                    third_quarter+1,
                     current_page.clone(),
                     Some(String::from("column_3")),
                     Some(String::from("column")),
@@ -340,7 +341,7 @@ pub fn gallery() -> Html {
                 )}
 
                 {set_images(
-                    third_quarter,
+                    third_quarter+1,
                     PAGE_SIZE+1,
                     current_page.clone(),
                     Some(String::from("column_4")),
