@@ -174,14 +174,11 @@ pub fn gallery() -> Html {
                 format!("{PICS_COMPRESSED_FOLDER_NAME}{img_name}{COMPRESSED_IMAGE_EXTENSION}");
             let current_uncompressed_img =
                 format!("{PICS_UNCOMPRESSED_FOLDER_NAME}{img_name}{UNCOMPRESSED_IMAGE_EXTENSION}");
-            let (selected_img_class, image_artist_box): (&str, String) = {
+            let (selected_img_class): (&str) = {
                 if *selected_img_id == id {
-                    (
-                        FULLSCREEN_OVERLAY_CLASS_NAME,
-                        String::from(IMAGE_ARTIST_BOX_NAME),
-                    )
+                    FULLSCREEN_OVERLAY_CLASS_NAME
                 } else {
-                    ("", (String::from("hidden-") + IMAGE_ARTIST_BOX_NAME))
+                    ""
                 }
             };
             let current_artist = artist_credits
@@ -202,7 +199,8 @@ pub fn gallery() -> Html {
 
             let display_img = |class: Option<&'static str>,
                                img_class: Option<&'static str>,
-                               src: String| {
+                               src: String,
+                               image_artist_box: String| {
                 html! {
                     <div key={img_name.clone()}
                          class={class.unwrap_or("")}
@@ -232,7 +230,7 @@ pub fn gallery() -> Html {
                                 html! {
                                     <a href={current_artist.chars().take_while(|c| *c != ' ').collect::<String>()}
                                        target="_blank"
-                                       class={image_artist_box.clone()}
+                                       class={image_artist_box}
                                     >
                                         {&current_artist.split_whitespace().skip(1).collect::<String>()}
                                     </a>
@@ -250,12 +248,18 @@ pub fn gallery() -> Html {
                             display_img(
                                 Some(FULLSCREEN_OVERLAY_CLASS_NAME),
                                 Some(FULLSCREEN_IMG_CLASS_NAME),
-                                current_uncompressed_img.clone()
+                                current_uncompressed_img.clone(),
+                                IMAGE_ARTIST_BOX_NAME.to_owned()
                             )
                         }
                     }
                     // The normal image gets displayed nomatter what
-                    {display_img(None, Some(wrapper), current_img.clone())}
+                    {display_img(
+                        None,
+                        Some(wrapper),
+                        current_img.clone(),
+                        String::from("hidden-") + IMAGE_ARTIST_BOX_NAME
+                    )}
                 </>
             }
         };
