@@ -12,7 +12,7 @@
     padding: 20px 5px;
   }
   span {
-    min-width: 100vw;
+    min-width: 100dvw;
   }
 }
 
@@ -29,14 +29,14 @@
  *
  */
 .column {
-  max-width: 22vw;
+  max-width: 22dvw;
   position: relative;
   /* Mobile responsiveness */
   @media screen and (max-width: 900px) {
-    max-width: 33vw;
+    max-width: 33dvw;
   }
   @media screen and (max-width: 600px) {
-    max-width: 100vw;
+    max-width: 100dvw;
   }
 
   /* This is a must */
@@ -142,8 +142,8 @@
   background-color: rgba(0, 0, 0, 0.6);
 }
 .fullscreen-overlay img {
-  max-width: 80vw;
-  max-height: 80vh;
+  max-width: 80dvw;
+  max-height: 80dvh;
   object-fit: cover;
   /* Margin auto my beloved <3 */
   margin: auto;
@@ -167,8 +167,8 @@
   opacity: 1;
 }
 .fullscreen-img {
-  width: 100vw;
-  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
   margin: auto;
 }
 
