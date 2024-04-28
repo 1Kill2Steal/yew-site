@@ -6,15 +6,13 @@ use serde_json::json;
 use std::fs::File;
 use std::io::Write;
 
-fn capture_idx(regex: &regex::Regex, path_item_name: &String) -> u32 {
-    let idx_capture = || regex.captures(path_item_name.as_str());
-    idx_capture()
-        .unwrap()
-        .get(2)
-        .unwrap_or_else(|| idx_capture().unwrap().get(4).unwrap())
-        .as_str()
-        .parse::<u32>()
-        .unwrap()
+fn capture_idx(regex: &regex::Regex, path_item_name: &str) -> u32 {
+    regex
+        .captures(path_item_name)
+        .and_then(|c| c.get(2).or_else(|| c.get(4)))
+        .map(|c| c.as_str())
+        .and_then(|s| s.parse().ok())
+        .expect(&(String::from("Failed to do a regex parse on a file (") + path_item_name + ")."))
 }
 
 pub fn set_pics_counts_json() {
