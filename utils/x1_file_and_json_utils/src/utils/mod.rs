@@ -34,12 +34,14 @@ pub fn set_pic_names() {
 
     let (compressed_item_names, uncompressed_item_names) = {
         // I'm bad at regex :<
-        // The regex is for file_name_NUM.extension OR (|) NUM_file_name.extension - You aren't
-        // restricted of using other numbers at other spots of the file name. Just don't do stuff
-        // like NUM_file_name_NUM.extension because this has 2 NUM captures (gets the last one by
-        // default). In the case of a file not having any NUM captures the utility panics which
-        // should be your warning to set normal file names bruh. I'm not some wizard that knows
-        // what file number you want.
+        // The regex is for file_name_NUM.extension OR (|)
+        // NUM_file_name.extension - You aren't restricted of using other
+        // numbers at other spots of the file name. Just don't do stuff like
+        // NUM_file_name_NUM.extension because this has 2 NUM captures (gets the
+        // last one by default). In the case of a file not having any NUM
+        // captures the utility panics which should be your warning to set
+        // normal file names bruh. I'm not some wizard that knows what file
+        // number you want.
         // https://regex101.com/r/V6HfFq/1
         let file_number_regex = regex::Regex::new(r"(_)(\d+)(.)|(\d+)(_)").unwrap();
 
