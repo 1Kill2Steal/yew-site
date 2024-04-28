@@ -8,13 +8,14 @@
 
 ## Short Description & Instructions
 
-It uses WASM bindgen with the Yew framework and the yew router to serve the
+It uses `wasm-bindgen` with the Yew framework and the yew router to serve the
 website. The website itself is straight-forward as it features the following
 content:
 
 - Sticky navigation bar
 - Fixed at the bottom Footer
 - 3 pages: Homepage, About Me, Gallery
+- 2 page categories: Projects and Blogs
 
 The Gallery images are locally saved and the instructions to set the gallery images are the following:
 
@@ -25,8 +26,22 @@ Tips: If you use Thunar as your file manager there's a very intuitive way to
 bulk rename your files. If not then, I'm sure there's other utilities to get
 that job done.
 
-The site is fully responsive and the gallery (once set up) has a similar
-structure to the way Pinterest images are displayed (just a lot more simple).
+The site is fully responsive and the gallery has a similar structure to the way
+Pinterest images are displayed (just a lot more simple).
+
+Additional info:
+
+**Artist credits**
+
+There's a python script (under `/py-utils/`) for calling the API of a site
+called [SauceNAO](https://saucenao.com/) which is used to look up image sources
+on the internet. It's used to configure the `/hutao/json/artist_credits.json`
+file which serves as a way to find the Artists information.
+
+> [!IMPORTANT]
+> If you're an artist of any of the artworks on this site and you don't want
+> them listed in it then by all means list it as an issue or contact me via any
+> of my social medias (discord at: `1Kill2Steal#5316` for example).
 
 ### Setting up
 
