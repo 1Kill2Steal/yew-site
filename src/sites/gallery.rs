@@ -174,7 +174,7 @@ pub fn gallery() -> Html {
                 format!("{PICS_COMPRESSED_FOLDER_NAME}{img_name}{COMPRESSED_IMAGE_EXTENSION}");
             let current_uncompressed_img =
                 format!("{PICS_UNCOMPRESSED_FOLDER_NAME}{img_name}{UNCOMPRESSED_IMAGE_EXTENSION}");
-            let (selected_img_class): (&str) = {
+            let selected_img_class: &str = {
                 if *selected_img_id == id {
                     FULLSCREEN_OVERLAY_CLASS_NAME
                 } else {
