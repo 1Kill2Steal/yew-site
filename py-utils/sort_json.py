@@ -9,7 +9,6 @@ def sort_json(data):
     if isinstance(data, dict):
         # Check for numeric sorting.
         if all(key.isdigit() for key in data.keys()):
-            # Sort dictionary keys numerically
             sorted_keys = sorted(data.keys(), key=lambda x: int(x))
         # Otherwise do lexicograpthical sorting.
         else:

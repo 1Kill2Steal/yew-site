@@ -88,6 +88,9 @@ async def main():
     #
     # Reason: SauceNAO has a 100 requests per day limit so make sure you don't
     # use unneeded requests!
+    #
+    # NOTE: Some checked artists from this set aren't listed in the final JSON
+    # file. That's the case because there wasn't any match found from SauceNAO.
     checked_artists = { 101, 102, 103, 107, 108, 113, 116, 118, 120, 121, 126,
                         128, 131, 132, 133, 134, 135, 136, 137, 14, 142, 144,
                         145, 146, 151, 17, 18, 21, 22, 25, 31, 43, 44, 45, 50,
