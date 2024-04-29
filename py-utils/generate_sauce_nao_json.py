@@ -45,17 +45,22 @@ async def main():
     """
 
     # Arguments parsing
-    parser = argparse.ArgumentParser(description='Description of your program.')
-    parser.add_argument('--rate-limit', '-rl', \
-                        type=bool, default=True, \
-                        help='The SauceNAO API Rate Limit toggle (On by default)'\
-                        )
+    parser = argparse.ArgumentParser(description='Send SauceNAO API requests for the ' \
+        'pictures in the gallery pics folder.')
+    parser.add_argument(
+        '--rate-limit', '-rl', \
+        type=bool, \
+        default=True, \
+        help='The SauceNAO API Rate Limit toggle (On by default)', \
+    )
 
     # It doesn't HAVE to be hard coded but it's easier to hard code it in this use case.
-    parser.add_argument('--skip-existing', '-se', \
-                        type=bool, default=True, \
-                        help='Skip the hardcoded existing image credits (On by default)' \
-                        )
+    parser.add_argument(
+        '--skip-existing', '-se', \
+        type=bool, \
+        default=True, \
+        help='Skip the hardcoded existing image credits (On by default)', \
+    )
 
     args = parser.parse_args()
 
