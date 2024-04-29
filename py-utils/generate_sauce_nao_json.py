@@ -83,12 +83,18 @@ async def main():
     #
     # Reason: SauceNAO has a 100 requests per day limit so make sure you don't
     # use unneeded requests!
-    existing_credits = {101, 102, 103, 107, 108, 113, 116, 118, 120, 121, 126,
+    checked_artists = { 101, 102, 103, 107, 108, 113, 116, 118, 120, 121, 126,
                         128, 131, 132, 133, 134, 135, 136, 137, 14, 142, 144,
                         145, 146, 151, 17, 18, 21, 22, 25, 31, 43, 44, 45, 50,
                         6, 61, 67, 69, 8, 81, 90, 96, 98, 72, 16, 35, 24, 52,
                         79, 109, 70, 84, 11, 4, 49, 39, 12, 28, 56, 7, 32, 46,
-                        33, 100, 58, 15, 41, 23, 42, 83, 1, 94, 34, 63}
+                        33, 100, 58, 15, 41, 23, 42, 83, 1, 94, 34, 63, 10,
+                        106, 149, 87, 143, 147, 139, 60, 75, 66, 2, 48, 117,
+                        26, 13, 20, 5, 95, 125, 64, 123, 19, 115, 114, 53, 86,
+                        54, 150, 110, 148, 99, 57, 40, 140, 27, 88, 76, 30, 36,
+                        130, 85, 74, 78, 71, 73, 97, 80, 127, 119, 38, 138, 68,
+                        112, 37, 104, 82, 124, 62, 91, 9, 51, 55, 111, 77, 29,
+                        93, 105, 65, 47 }
 
     ###################
     # JSON generation #
@@ -104,7 +110,7 @@ async def main():
         img_id = set_regex_number(item_to_match=file.name)
 
         # Skip already checked values
-        if skip_existing and existing_credits.__contains__(img_id):
+        if skip_existing and checked_artists.__contains__(img_id):
             continue
 
         results = await sauce.from_file(file.__fspath__())
@@ -119,9 +125,9 @@ async def main():
 
         # Print out the JSON values pairs.
         if results and results[0].similarity > 80:
-            print(f"  \"{img_id}\": \"{results[0].source_url} {results[0].author_name}\"")
+            print(f"  \"{img_id}\": \"{results[0].source_url} {results[0].author_name}\",")
         else:
-            print(f"  \"{img_id}\": \"\"")
+            print(f"  \"{img_id}\": \"\",")
 
     print("}")
 
