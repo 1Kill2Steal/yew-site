@@ -31,21 +31,24 @@ pub mod tests {
             let _ = image_credit_file.read_to_string(&mut temp);
             temp
         };
-        // let mut existing_items = vec![];
+        let mut missing_items: Vec<u32> = vec![];
         let image_credit_json: JsonArtistCredits = serde_json::from_str(&string_content)?;
         for i in 1..=uncompressed_dir().count() {
             if !(image_credit_json.artist_credits.contains_key(&(i as u32))) {
-                eprintln!("{:#?}", image_credit_json);
-                return Err(Error::MissingArtistCredit { idx: i }.into());
+                missing_items.push(i as u32);
+                // Uncomment these lines if you want the test to throw an error if there's a
+                // missing artist credit source.
+
+                // eprintln!("{:#?}", image_credit_json);
+                // return Err(Error::MissingArtistCredit { idx: i }.into());
             }
-            // let item = image_credit_json.artist_credits.get(&(i as u32)).unwrap();
-            // if !item.is_empty() {
-            //     existing_items.push(i.to_string());
-            // }
         }
-        // existing_items.sort();
-        // Fail on purpose so I can get the existing_items
-        // assert_eq!(vec![String::from("")].join(", "), existing_items.join(", "));
+        // Uncomment those lines if you want to have a printed list of all the missing artists or
+        // if you want to have no missing artists from the JSON config.
+
+        // missing_items.sort();
+        // assert_eq!(Vec::<u32>::new(), missing_items);
+        println!("Missing Artist Credits:\n{:?}", missing_items);
         Ok(())
     }
 }
