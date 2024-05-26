@@ -206,11 +206,17 @@ pub fn leetcode_trees_contents() -> Html {
             {") but it expands upon their general implementations with additional macros as well as
             a proper"}<b>{"Result<T, E>"}</b>{" type which can be used in tests and/or your main
             function."}
+            <br />
+            <br />
             {"Feel free to check out the "}
             <a href="https://github.com/1Kill2Steal/leetcode-trees-rs/tree/main/solutions" target="_blank">
                 {"Example Solutions"}
             </a>
             {" on GitHub."}
+            <br />
+            <br />
+            {"Also feel free to check out the following example which is also available on the
+            homepage of the GitHub repo: "}
             {set_iframe_gist("https://gist.github.com/1Kill2Steal/0ffdcc6e9defbcd0f1ca37b0cbe73a40", Some(1000))}
         </>
     })
