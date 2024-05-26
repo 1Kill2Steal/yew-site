@@ -1,3 +1,5 @@
+use std::ops::Add;
+
 use super::*;
 
 /// The function is used to pair a CSS class with an associated key (which is mandatory for
@@ -13,24 +15,29 @@ pub fn html_wrapper(item: Html, key: String, class: Option<String>, id: Option<S
     }
 }
 
-pub fn set_iframe_gist(link: &str, height: Option<&str>) -> Html {
+pub fn set_iframe_gist(link: &str, height: Option<u32>) -> Html {
+    let auto_for_none = || match height {
+        Some(_) => None,
+        None => Some(String::from("auto")),
+    };
     html! {
         <iframe frameborder=0 class={data::IFRAME_GIST}
                 scrolling={"no"} seamless={"seamless"}
+                style={format!("height: {}px", auto_for_none().unwrap_or(height.unwrap_or(0).add(48).to_string()))}
                 srcdoc={format!(
                 "<html>
                     <body>
                         <style type=\"text/css\">
                         .gist,
                         .gist-data {{
-                            height: {};
+                            height: {}px;
                         }}
                         </style>
                         <script 
                             src=\"{}\">
                         </script>
                     </body>
-                </html>", height.unwrap_or("auto"), link.to_owned() + ".js")}
+                </html>", auto_for_none().unwrap_or(height.unwrap_or(0).to_string()), link.to_owned() + ".js")}
         ></iframe>
     }
 }
