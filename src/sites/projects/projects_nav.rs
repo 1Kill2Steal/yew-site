@@ -8,31 +8,24 @@ pub fn projects() -> Html {
         let nav = nav.clone();
         Callback::from(move |_| nav.clone().push(&target))
     };
+    let project_item = |tag: &'static str, target: Route, text: &'static str| -> Html {
+        html! {
+            <div tag={tag} class={"project-item"}>
+                <p>
+                    <a href={"javascript:void(0);"} onclick={callback_nav(target)}>
+                        {text}
+                    </a>
+                </p>
+            </div>
+        }
+    };
     wrap_site(html! {
         <>
             <h1>{ "Projects" }</h1>
             <div tag={"projects-list"} class={"projects-list"}>
-                <div tag={"serenity_discord_bot"} class={"project-item"}>
-                    <p>
-                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectSerenityDiscordBot)}>
-                            {"Serenity discord bot"}
-                        </a>
-                    </p>
-                </div>
-                <div tag={"discord_interactions_bot"} class={"project-item"}>
-                    <p>
-                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectDiscordInteractionsBot)}>
-                            {"Discord interactions bot"}
-                        </a>
-                    </p>
-                </div>
-                <div tag={"counting_blinks"} class={"project-item"}>
-                    <p>
-                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectCountingBlinks)}>
-                            {"Counting Blinks"}
-                        </a>
-                    </p>
-                </div>
+                {project_item("serenity_discord_bot", Route::ProjectSerenityDiscordBot, "Serenity discord bot")}
+                {project_item("discord_interactions_bot", Route::ProjectDiscordInteractionsBot, "Discord Interactions Bot")}
+                {project_item("counting_blinks", Route::ProjectCountingBlinks, "Counting Blinks")}
             </div>
         </>
     })
