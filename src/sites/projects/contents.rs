@@ -1,3 +1,5 @@
+use crate::utils::set_iframe_gist;
+
 use super::*;
 
 const PROJECT_SHOWCASE: &str = "project-showcase";
@@ -169,6 +171,47 @@ pub fn counting_blinks_contents() -> Html {
             <br />
             <img src="/public/projects/counting-blinks.gif" />
             <br />
+        </>
+    })
+}
+
+pub fn leetcode_trees_contents() -> Html {
+    project_showcase_wrap(html! {
+        <>
+            <br />
+            <h2>{"LeetCode Trees"}</h2>
+            <br />
+            <a href="https://github.com/1Kill2Steal/leetcode-trees-rs" target="_blank">
+                {"GitHub repo"}
+            </a>
+            <br />
+            <br />
+            <a href="https://docs.rs/leetcode-trees-rs/latest/leetcode_trees_rs/" target="_blank">
+                {"Docs.rs"}
+            </a>
+            <br />
+            <br />
+            {"A Rust library for Binary Trees in "}
+            <a href="https://leetcode.com/" target="_blank">
+                {"LeetCode"}
+            </a>
+            {". It uses the same struct signatures as the LeetCode (LC) problems (refer to: "}
+            <a href="https://leetcode.com/problems/same-tree/" target="_blank">
+                {"100. Same Tree"}
+            </a>
+            {" and "}
+            <a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank">
+                {"103. Binary Tree Level Order Traversal"}
+            </a>
+            {") but it expands upon their general implementations with additional macros as well as
+            a proper"}<b>{"Result<T, E>"}</b>{" type which can be used in tests and/or your main
+            function."}
+            {"Feel free to check out the "}
+            <a href="https://github.com/1Kill2Steal/leetcode-trees-rs/tree/main/solutions" target="_blank">
+                {"Example Solutions"}
+            </a>
+            {" on GitHub."}
+            {set_iframe_gist("https://gist.github.com/1Kill2Steal/0ffdcc6e9defbcd0f1ca37b0cbe73a40", Some(1000))}
         </>
     })
 }
