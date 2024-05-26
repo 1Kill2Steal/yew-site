@@ -24,3 +24,9 @@ pub fn counting_blinks() -> Html {
     let nav = use_navigator().unwrap();
     wrap_project_subsite(nav, counting_blinks_contents())
 }
+
+#[function_component(ProjectLeetCodeTrees)]
+pub fn leetcode_trees() -> Html {
+    let nav = use_navigator().unwrap();
+    wrap_project_subsite(nav, leetcode_trees_contents())
+}

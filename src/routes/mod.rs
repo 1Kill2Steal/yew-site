@@ -20,6 +20,8 @@ pub enum Route {
     ProjectDiscordInteractionsBot,
     #[at("/projects/counting-blinks")]
     ProjectCountingBlinks,
+    #[at("/projects/leetcode-trees-rs")]
+    ProjectLeetCodeTrees,
 
     #[at("/gallery")]
     Gallery,

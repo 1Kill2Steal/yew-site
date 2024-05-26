@@ -40,6 +40,9 @@ pub fn switch(routes: Route) -> Html {
         Route::ProjectCountingBlinks => html! {
             <ProjectCountingBlinks />
         },
+        Route::ProjectLeetCodeTrees => html! {
+            <ProjectLeetCodeTrees />
+        },
 
         Route::Gallery => html! {
             <Gallery />

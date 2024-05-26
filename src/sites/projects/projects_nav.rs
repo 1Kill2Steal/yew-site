@@ -26,6 +26,7 @@ pub fn projects() -> Html {
                 {project_item("serenity_discord_bot", Route::ProjectSerenityDiscordBot, "Serenity discord bot")}
                 {project_item("discord_interactions_bot", Route::ProjectDiscordInteractionsBot, "Discord Interactions Bot")}
                 {project_item("counting_blinks", Route::ProjectCountingBlinks, "Counting Blinks")}
+                {project_item("leetcode_trees", Route::ProjectLeetCodeTrees, "LeetCode Trees")}
             </div>
         </>
     })
