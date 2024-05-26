@@ -77,13 +77,35 @@ pub fn nav() -> Html {
                 <details key={"projects_details"} class={&set_nav_section_class}>
                     <summary>{"Projects"}</summary>
                     <div key={"projects_navigation"} class={&set_nav_section_items}>
-                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::Projects)}>{ "All Projects" }</a>
+                        <a href={"javascript:void(0);"}
+                           onclick={callback_nav(Route::Projects)}
+                        >
+                           {"All Projects"}
+                        </a>
                         <br />
-                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectSerenityDiscordBot)}>{ "Serenity Discord Bot" }</a>
+                        <a href={"javascript:void(0);"}
+                           onclick={callback_nav(Route::ProjectSerenityDiscordBot)}
+                        >
+                           {"Serenity Discord Bot"}
+                        </a>
                         <br />
-                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectDiscordInteractionsBot)}>{ "Discord Interactions Bot" }</a>
+                        <a href={"javascript:void(0);"}
+                           onclick={callback_nav(Route::ProjectDiscordInteractionsBot)}
+                        >
+                           {"Discord Interactions Bot"}
+                        </a>
                         <br />
-                        <a href={"javascript:void(0);"} onclick={callback_nav(Route::ProjectCountingBlinks)}>{ "Counting Blinks" }</a>
+                        <a href={"javascript:void(0);"}
+                           onclick={callback_nav(Route::ProjectCountingBlinks)}
+                        >
+                           {"Counting Blinks"}
+                        </a>
+                        <br />
+                        <a href={"javascript:void(0);"}
+                           onclick={callback_nav(Route::ProjectLeetCodeTrees)}
+                        >
+                           {"LeetCode Trees"}
+                        </a>
                     </div>
                 </details>
                 <div key={"gallery"} class={&set_nav_item_class} onclick={callback_nav(Route::Gallery)}>
